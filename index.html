@@ -583,7 +583,7 @@ const DAYOUT_PLACES = [
      good:["Free story sessions & activities","Huge children's section","Warm & welcoming"],
      cautions:["Quiet zones — manage noise","Limited parking nearby"],
      kid:["Baby & toddler story time","Craft tables","Cosy reading nooks"],
-     url:"https://www.devon.gov.uk/libraries/"}},
+     url:"https://www.librariesunlimited.org.uk/"}},
   {name:"Darts Farm",region:"Exeter",emoji:"🛒",iconBg:"#f0ffe8",type:"places",
    rating:4.7,count:2340,tags:["#farm","#food","#under-5-OK"],regionKey:"Exeter",flags:["under5","kids"],
    detail:{price:"Free entry",hours:"8:30–18:00",location:"Clyst St George EX3 0QH",
@@ -828,7 +828,7 @@ function renderQA(){
 }
 
 /* ── CARDS ── */
-function getDataset(){return currentMode==="dayout"?DAYOUT_PLACES:(holidayData||[]);}
+function getDataset(){if(currentMode==="dayout") return [...DAYOUT_PLACES,...(holidayData||[]).filter(p=>p.type==="places")]; return (holidayData||[]).filter(p=>p.type!=="places");}
 
 function cardHTML(p){
   if(currentMode==="dayout"){
@@ -1216,6 +1216,7 @@ renderChips();
 renderQA();
 renderPlaces();
 loadQA();
+    loadHolidayClubs();
 </script>
 </body>
 </html>
