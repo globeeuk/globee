@@ -383,7 +383,7 @@
     </div>
     <div class="mode-toggle">
       <button class="mode-btn active" data-mode="dayout" onclick="switchMode('dayout')">
-        <span>🎢</span> Days out
+        <span>📅</span> What's on
       </button>
       <button class="mode-btn" data-mode="holiday" onclick="switchMode('holiday')">
         <span>🏫</span> Holiday clubs
@@ -795,7 +795,7 @@ function matchesChip(p,chip){
   if(chip==="💷 Free")     return (p.flags&&p.flags.includes("free"))||(p.price_type||"").toLowerCase()==="free";
   if(chip==="🌲 Outdoor") return p.type==="outdoor";
   if(chip==="⚽ Sports")  return p.type==="sports";
-  if(chip==="🎨 Art")     return p.type==="art"||p.type==="multi";
+  if(chip==="🎨 Art")     return p.type==="art";
   return true;
 }
 /* ── CHIPS ── */
@@ -1185,8 +1185,8 @@ function switchMode(mode){
   currentMode=mode;activeChip="All";searchTerm="";
   document.getElementById("searchInput").value="";
   document.querySelectorAll(".mode-btn").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));
-  document.getElementById("searchInput").placeholder=mode==="dayout"?"Where shall we go?":"Find a club or camp…";
-  document.getElementById("listTitle").textContent=mode==="dayout"?"📍 Places to visit":"🏫 Holiday & after-school clubs";
+  document.getElementById("searchInput").placeholder=mode==="dayout"?"What's on in Exeter?":"Find a club or camp…";
+  document.getElementById("listTitle").textContent=mode==="dayout"?"📅 What's on":"🏫 Holiday & after-school clubs";
   renderChips();
   renderQA();
   if(mode==="holiday"&&!holidayData) loadHolidayClubs();
