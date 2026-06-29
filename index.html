@@ -401,7 +401,7 @@
   <!-- EXPLORE VIEW -->
   <div class="view active" id="view-explore">
     <!-- 탐험 서브카테고리: 시내 / 외곽 / 1박+ -->
-    <div style="display:flex;gap:8px;padding:14px 0 4px;overflow-x:auto;scrollbar-width:none;">
+    <div id="areaSubBar" style="display:flex;gap:8px;padding:14px 0 4px;overflow-x:auto;scrollbar-width:none;">
       <button class="explore-sub active" data-sub="all" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--gold);background:var(--gold);color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🗺 All</button>
       <button class="explore-sub" data-sub="city" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🏙 In town</button>
       <button class="explore-sub" data-sub="daytrip" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🚗 Day trip</button>
@@ -1194,6 +1194,7 @@ function switchMode(mode){
   document.querySelectorAll(".mode-btn").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));
   document.getElementById("searchInput").placeholder=mode==="dayout"?"What's on in Exeter?":"Find a club or camp…";
   document.getElementById("listTitle").textContent=mode==="dayout"?"📅 What's on":"🏫 Holiday & after-school clubs";
+  document.getElementById("areaSubBar").style.display=mode==="dayout"?"flex":"none";
   renderChips();
   renderQA();
   if(mode==="holiday"&&!holidayData) loadHolidayClubs();
