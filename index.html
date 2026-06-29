@@ -563,7 +563,7 @@ const TYPE_BG     = {sports:"#fff0e8",outdoor:"#f0ffe8",multi:"#e8f0ff",festival
 const TYPE_COLORS = {sports:"#e8a838",outdoor:"#4caf7d",multi:"#6b8cff",festival:"#e8599a",places:"#a78bfa",camp:"#e8a838",art:"#e8599a",music:"#6b8cff"};
 /* ── DAYS OUT ── */
 const DAYOUT_PLACES = [
-  {name:"Crealy Theme Park",region:"Exeter",emoji:"🎢",iconBg:"#fff0e8",type:"places",
+  {name:"Crealy Theme Park",region:"Exeter",emoji:"🎢",iconBg:"#fff0e8",type:"places",area:"outskirts",
    rating:4.4,count:5620,tags:["#theme-park","#all-ages","#rainy-OK"],regionKey:"Exeter",flags:["rainy","kids"],
    detail:{price:"£28–£35",hours:"10:00–17:00",location:"Sidmouth Rd, Clyst St Mary EX5 1DR",
      good:["60+ rides & attractions","Indoor play barn","Animal handling for little ones"],
@@ -571,21 +571,21 @@ const DAYOUT_PLACES = [
      kid:["Toddler ride zone","Baby-change & feeding room","Pram hire on-site"],
      url:"https://www.crealy.co.uk/",
      bookUrl:"https://www.crealy.co.uk/plan-your-visit/book-tickets/"}},
-  {name:"Exeter Quay",region:"Exeter",emoji:"⛵",iconBg:"#e8f0ff",type:"places",
+  {name:"Exeter Quay",region:"Exeter",emoji:"⛵",iconBg:"#e8f0ff",type:"places",area:"city",
    rating:4.7,count:3840,tags:["#walk","#canoe","#free","#under-5-OK"],regionKey:"Exeter",flags:["under5","free","kids"],
    detail:{price:"Free (canoe hire extra)",hours:"Always open",location:"The Quay, Exeter EX2 4AN",
      good:["Flat path — pram-friendly","Custom House visitor centre","Weekend food trucks"],
      cautions:["Paid parking £3/h","Can feel bleak in heavy rain"],
      kid:["Feeding the ducks","Riverside café seating","Baby-change loos"],
      url:"https://exetercustomhouse.co.uk/"}},
-  {name:"RAMM Museum",region:"Exeter",emoji:"🏛️",iconBg:"#e8f0ff",type:"places",
+  {name:"RAMM Museum",region:"Exeter",emoji:"🏛️",iconBg:"#e8f0ff",type:"places",area:"city",
    rating:4.5,count:2130,tags:["#free","#educational","#rainy-OK","#under-5-OK"],regionKey:"Exeter",flags:["rainy","under5","free","kids"],
    detail:{price:"Free",hours:"10:00–17:00 (closed Mon)",location:"Queen St, Exeter EX4 3RX",
      good:["Completely free entry","Taxidermy & world cultures rooms","Regular kids' workshops"],
      cautions:["Closed Mondays","Busy on weekend afternoons"],
      kid:["Baby-change & breastfeeding room","Prams welcome","Time Odyssey gallery"],
      url:"https://rammuseum.org.uk/"}},
-  {name:"Powderham Castle",region:"Exeter",emoji:"🏰",iconBg:"#fef3d7",type:"places",
+  {name:"Powderham Castle",region:"Exeter",emoji:"🏰",iconBg:"#fef3d7",type:"places",area:"outskirts",
    rating:4.6,count:4210,tags:["#castle","#animals","#playground","#under-5-OK"],regionKey:"Exeter",flags:["under5","kids"],
    detail:{price:"£16–£22 (family £55)",hours:"11:00–16:30",location:"Powderham, Kenton EX6 8JQ",
      good:["Deer park + tractor ride","Big adventure playground","Adventure Festival in August"],
@@ -593,7 +593,7 @@ const DAYOUT_PLACES = [
      kid:["Free child wristband","Picnics welcome","Pram-friendly trail marked"],
      url:"https://www.powderham.co.uk/",
      bookUrl:"https://www.powderham.co.uk/visit/"}},
-  {name:"Dartmoor Zoo",region:"Dartmoor",emoji:"🦁",iconBg:"#f0ffe8",type:"outdoor",
+  {name:"Dartmoor Zoo",region:"Dartmoor",emoji:"🦁",iconBg:"#f0ffe8",type:"outdoor",area:"outskirts",
    rating:4.5,count:3200,tags:["#zoo","#outdoor"],regionKey:"Dartmoor",flags:["kids"],
    detail:{price:"£17–£20",hours:"10:00–17:00",location:"Sparkwell, Plymouth PL7 5DG",
      good:["Big cats — tigers, cheetahs","Daily keeper talks","Woodland walks"],
@@ -601,21 +601,21 @@ const DAYOUT_PLACES = [
      kid:["Family picnic area","Small playground","Limited indoor space"],
      url:"https://www.dartmoorzoo.org.uk/",
      bookUrl:"https://www.dartmoorzoo.org.uk/tickets/"}},
-  {name:"Exeter Cathedral",region:"Exeter",emoji:"⛪",iconBg:"#fef3d7",type:"places",
+  {name:"Exeter Cathedral",region:"Exeter",emoji:"⛪",iconBg:"#fef3d7",type:"places",area:"city",
    rating:4.8,count:6100,tags:["#cathedral","#free","#rainy-OK"],regionKey:"Exeter",flags:["rainy","free","kids"],
    detail:{price:"Free (donations welcome)",hours:"9:00–17:00",location:"The Close, Exeter EX1 1HS",
      good:["Stunning medieval architecture","Cathedral Green for picnics","Regular family events"],
      cautions:["Tower tours must be booked","Very busy in summer"],
      kid:["Interactive children's trail","Flat Green for running","Café nearby"],
      url:"https://www.exeter-cathedral.org.uk/"}},
-  {name:"Exeter Library",region:"Exeter",emoji:"📚",iconBg:"#e8f7ee",type:"places",
+  {name:"Exeter Library",region:"Exeter",emoji:"📚",iconBg:"#e8f7ee",type:"places",area:"city",
    rating:4.6,count:890,tags:["#free","#rainy-OK","#under-5-OK"],regionKey:"Exeter",flags:["rainy","under5","free","kids"],
    detail:{price:"Free",hours:"Mon–Sat 9:00–17:30",location:"Castle St, Exeter EX4 3PQ",
      good:["Free story sessions & activities","Huge children's section","Warm & welcoming"],
      cautions:["Quiet zones — manage noise","Limited parking nearby"],
      kid:["Baby & toddler story time","Craft tables","Cosy reading nooks"],
      url:"https://www.librariesunlimited.org.uk/"}},
-  {name:"Darts Farm",region:"Exeter",emoji:"🛒",iconBg:"#f0ffe8",type:"places",
+  {name:"Darts Farm",region:"Exeter",emoji:"🛒",iconBg:"#f0ffe8",type:"places",area:"outskirts",
    rating:4.7,count:2340,tags:["#farm","#food","#under-5-OK"],regionKey:"Exeter",flags:["under5","kids"],
    detail:{price:"Free entry",hours:"8:30–18:00",location:"Clyst St George EX3 0QH",
      good:["Farm shop + food court","Kids' trail","Regular seasonal events"],
@@ -702,7 +702,7 @@ const REVIEWS = {
 /* ── CHIPS ── */
 const CHIPS = {
   dayout:  ["All","👶 Under 5","🧒 Age 5–12","💷 Free"],
-  holiday: ["All","🌲 Outdoor","⚽ Sports","🎨 Art","⏰ Full day","🧒 Age 5–12","💷 Free"],
+  holiday: ["All","🌲 Outdoor","⚽ Sports","🎨 Art","🧒 Age 5–12","💷 Free"],
 };
 /* ── CALENDAR DATA ── */
 const SPECIFIC_EVENTS = [
@@ -793,7 +793,6 @@ function matchesChip(p,chip){
     ? p.flags.includes("kids")
     : (p.age_min!=null&&p.age_max!=null&&p.age_min<=12&&p.age_max>=5);
   if(chip==="💷 Free")     return (p.flags&&p.flags.includes("free"))||(p.price_type||"").toLowerCase()==="free";
-  if(chip==="⏰ Full day") return p.flags&&p.flags.includes("fullday");
   if(chip==="🌲 Outdoor") return p.type==="outdoor";
   if(chip==="⚽ Sports")  return p.type==="sports";
   if(chip==="🎨 Art")     return p.type==="art"||p.type==="multi";
@@ -945,9 +944,10 @@ function renderPlaces(){
   const data=getDataset();
   const filtered=data.filter(p=>{
     const c=matchesChip(p,activeChip);
-    if(!searchTerm) return c;
+    const sub=activeExploreSub==="all"||currentMode!=="dayout"?true:(p.area===activeExploreSub);
+    if(!searchTerm) return c&&sub;
     const hay=`${p.name||""} ${p.region||""} ${p.description||""} ${(p.tags||[]).join(" ")}`.toLowerCase();
-    return c&&hay.includes(searchTerm);
+    return c&&sub&&hay.includes(searchTerm);
   });
   wrap.innerHTML=banner+filtered.map(p=>cardHTML(p)).join("");
   document.getElementById("placeCount").textContent=filtered.length;
@@ -1003,9 +1003,7 @@ function mapRow(r){
     featured:(r.featured||"").toLowerCase()==="true"||(r.name||"").toLowerCase().includes("rising stars"),
     regionKey:(r.location||"").toLowerCase().includes("dartmoor")?"Dartmoor"
              :(r.location||"").toLowerCase().includes("exeter")?"Exeter":(r.region||""),
-    flags:[(r.price_type||"").toLowerCase()==="free"?"free":null,
-           ((r.dates||"").toLowerCase().includes("full")||(r.season||"").toLowerCase().includes("holiday"))?"fullday":null
-          ].filter(Boolean),
+    flags:[(r.price_type||"").toLowerCase()==="free"?"free":null].filter(Boolean),
   };
 }
 async function loadHolidayClubs(){
