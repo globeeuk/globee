@@ -38,7 +38,6 @@
     display:flex;flex-direction:column;
     box-shadow:0 0 40px rgba(61,40,23,0.10);overflow:hidden;
   }
-
   /* ── HEADER ── */
   header{
     flex-shrink:0;background:#fff;
@@ -58,7 +57,6 @@
     background:var(--gold-soft);color:var(--gold-dark);
     padding:4px 10px;border-radius:20px;font-size:11.5px;font-weight:600;
   }
-
   /* MODE TOGGLE */
   .mode-toggle{
     display:flex;gap:5px;background:var(--cream);
@@ -73,7 +71,6 @@
   }
   .mode-btn.active{background:var(--gold);color:#fff;box-shadow:0 2px 10px rgba(232,168,56,0.30);}
   .mode-btn:active{transform:scale(.97);}
-
   /* SEARCH */
   .search{
     margin-top:9px;display:flex;align-items:center;gap:8px;
@@ -85,7 +82,6 @@
     font-size:13.5px;color:var(--ink);font-family:inherit;
   }
   .search input::placeholder{color:var(--ink-mute);}
-
   /* CHIPS */
   .chips{
     display:flex;gap:6px;overflow-x:auto;padding:8px 0 2px;
@@ -100,13 +96,11 @@
   }
   .chip:active{transform:scale(.95);}
   .chip.active{background:var(--gold);color:#fff;border-color:var(--gold);font-weight:700;}
-
   /* DISCLAIMER */
   .disclaimer{
     flex-shrink:0;background:#fff8ec;border-bottom:1.5px solid var(--line);
     padding:7px 16px;font-size:11px;color:#8a6a2a;text-align:center;line-height:1.5;
   }
-
   /* ── VIEWS ── */
   .view{flex:1;overflow-y:auto;display:none;min-height:0;}
   .view.active{display:block;}
@@ -115,7 +109,6 @@
   #view-calendar{padding:14px 16px 90px;}
   #view-community{padding:0 16px 90px;}
   #view-map{position:relative;overflow:hidden;}
-
   /* SECTION HEADS */
   .section-head{
     display:flex;align-items:center;justify-content:space-between;
@@ -131,7 +124,6 @@
     transition:transform .15s;
   }
   .ask-btn:active{transform:scale(.95);}
-
   /* Q SCROLL */
   .q-scroll{
     display:flex;gap:9px;overflow-x:auto;padding:2px 0 6px;
@@ -149,7 +141,6 @@
   .q-meta{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--ink-mute);}
   .q-author{display:flex;align-items:center;gap:4px;color:var(--ink-soft);}
   .bee{font-size:11px;letter-spacing:-1.5px;}
-
   /* TIPS */
   .tips-label{font-size:10.5px;font-weight:700;color:var(--ink-mute);text-transform:uppercase;letter-spacing:.6px;margin-bottom:9px;}
   .tip-cta{
@@ -160,7 +151,6 @@
   }
   .tip-cta:hover{background:var(--gold-dark);}
   .tip-cta-sub{text-align:center;font-size:11px;color:var(--ink-mute);margin-top:6px;}
-
   /* CARDS */
   .cards{display:flex;flex-direction:column;gap:10px;min-height:60px;}
   .card-wrapper{
@@ -215,7 +205,6 @@
   .book-btn:hover{background:var(--gold-dark);}
   .book-btn--info{background:transparent;color:var(--gold);border:1.5px solid var(--gold);}
   .book-btn--info:hover{background:var(--gold);color:#fff;}
-
   /* STATES */
   .loading-state{text-align:center;padding:32px 16px;color:var(--ink-mute);font-size:13px;}
   .loading-state .spin{display:inline-block;font-size:22px;animation:spin 1.4s linear infinite;}
@@ -224,7 +213,6 @@
   .error-state strong{display:block;margin-bottom:4px;color:var(--gold-dark);}
   .error-state .retry{margin-top:9px;background:var(--gold);color:#fff;border:none;padding:6px 14px;border-radius:999px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;}
   .empty-hint{text-align:center;color:var(--ink-mute);font-size:12.5px;padding:28px 10px;display:none;}
-
   /* REVIEWS */
   .write-cta{
     width:100%;background:var(--gold);color:#fff;border:none;
@@ -251,7 +239,6 @@
   .react button{background:none;border:none;font:inherit;color:inherit;cursor:pointer;display:flex;align-items:center;gap:3px;transition:transform .15s;}
   .react button:active{transform:scale(.9);}
   .react button.liked{color:#E0556E;font-weight:600;}
-
   /* ── CALENDAR ── */
   .cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
   .cal-month-name{font-size:16px;font-weight:800;}
@@ -287,7 +274,6 @@
   .event-item-price{font-size:11px;font-weight:700;color:var(--gold-dark);white-space:nowrap;}
   .event-item-price.free{color:var(--green);}
   .event-item-arrow{font-size:15px;color:#ccc;}
-
   /* ── MAP ── */
   #map-el{position:absolute;inset:0;z-index:1;}
   .map-toolbar{
@@ -302,7 +288,6 @@
     box-shadow:0 2px 8px rgba(0,0,0,.08);transition:border-color .15s;
   }
   .map-toolbar-btn:hover{border-color:var(--gold);color:var(--gold-dark);}
-
   /* map bottom sheet */
   .map-sheet{
     position:absolute;bottom:0;left:0;right:0;
@@ -347,7 +332,6 @@
   .sheet-nav-btn{width:44px;height:44px;background:var(--cream);border:none;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);}
   .sheet-nav-btn:hover{background:var(--line);}
   .sheet-counter{font-size:12.5px;font-weight:600;color:var(--ink-soft);}
-
   /* pill markers */
   .mpill{
     background:var(--mc,#e8a838);color:#fff;
@@ -358,7 +342,6 @@
     transition:transform .12s,box-shadow .12s;
   }
   .mpill.active{transform:scale(1.18);box-shadow:0 3px 12px rgba(0,0,0,.25);}
-
   /* ── NAV ── */
   nav{
     flex-shrink:0;z-index:30;
@@ -376,7 +359,6 @@
   .nav-item.active{color:var(--gold);}
   .nav-item.active .ico{transform:translateY(-1px) scale(1.08);}
   .nav-item:active .ico{transform:scale(.9);}
-
   /* TOAST */
   .toast{
     position:fixed;bottom:80px;left:50%;
@@ -390,7 +372,6 @@
 </head>
 <body>
 <div class="app">
-
   <!-- HEADER -->
   <header>
     <div class="brand">
@@ -414,34 +395,88 @@
     </div>
     <div class="chips" id="chips"></div>
   </header>
-
   <div class="disclaimer">
     📋 <strong>Note:</strong> Prices &amp; schedules change — always check the provider before booking.
   </div>
-
   <!-- EXPLORE VIEW -->
   <div class="view active" id="view-explore">
-    <div class="section-head" style="margin-top:16px;">
+    <!-- 탐험 서브카테고리: 시내 / 외곽 / 1박+ -->
+    <div style="display:flex;gap:8px;padding:14px 0 4px;overflow-x:auto;scrollbar-width:none;">
+      <button class="explore-sub active" data-sub="all" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--gold);background:var(--gold);color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🗺 전체</button>
+      <button class="explore-sub" data-sub="city" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🏙 시내 탐험</button>
+      <button class="explore-sub" data-sub="outskirts" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🚗 외곽 탐험</button>
+      <button class="explore-sub" data-sub="overnight" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🏕 1박+ 탐험</button>
+    </div>
+    <div class="section-head" style="margin-top:12px;">
       <h2 id="listTitle">📍 Places to visit</h2>
       <span class="more"><strong id="placeCount">0</strong> listed</span>
     </div>
     <div class="cards" id="places"></div>
     <div class="empty-hint" id="emptyHint">😢 No matches — try a different filter</div>
-
     <div class="section-head" style="margin-top:24px;">
       <h2 id="qTitle">💬 What are mums asking?</h2>
       <a class="ask-btn" id="askBtn" href="https://forms.gle/tVQQETV24frZhhpa6" target="_blank" rel="noopener">✏️ Ask</a>
     </div>
     <div class="q-scroll" id="qScroll"></div>
-
     <div style="margin:16px 0 18px;">
       <div class="tips-label">✏️ TIPS</div>
       <a class="tip-cta" href="https://forms.gle/tVQQETV24frZhhpa6" target="_blank" rel="noopener">✏️ Leave a Tip 🐝</a>
       <div class="tip-cta-sub">Tips are reviewed and added to activity cards!</div>
     </div>
-
   </div>
-
+  <!-- HOLIDAY CLUBS VIEW -->
+  <div class="view" id="view-clubs" style="padding:0 16px 90px;">
+    <div style="background:linear-gradient(135deg,#4caf7d,#38d9a9);border-radius:var(--radius);padding:18px;margin:16px 0 14px;color:#fff;">
+      <div style="font-size:18px;font-weight:800;margin-bottom:4px;">🏕 홀리데이 클럽</div>
+      <div style="font-size:13px;opacity:.85;">방학 때 아이 보낼 곳을 찾고 있나요?<br>현지 엄마들이 직접 검증한 클럽 정보예요.</div>
+    </div>
+    <!-- 클럽 유형 필터 -->
+    <div style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-bottom:16px;">
+      <button style="flex-shrink:0;padding:7px 13px;border-radius:50px;border:1.5px solid var(--gold);background:var(--gold);color:#fff;font-size:12px;font-weight:700;cursor:pointer;">전체</button>
+      <button style="flex-shrink:0;padding:7px 13px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:12px;font-weight:700;cursor:pointer;">⚽ 스포츠</button>
+      <button style="flex-shrink:0;padding:7px 13px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:12px;font-weight:700;cursor:pointer;">🎨 액티비티</button>
+      <button style="flex-shrink:0;padding:7px 13px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:12px;font-weight:700;cursor:pointer;">🌿 자연·야외</button>
+      <button style="flex-shrink:0;padding:7px 13px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:12px;font-weight:700;cursor:pointer;">🧠 교육</button>
+    </div>
+    <!-- 방학 시즌 배너 -->
+    <div style="background:#FFF9E6;border:1.5px solid var(--gold);border-radius:var(--radius-sm);padding:13px 15px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px;">
+      <span style="font-size:22px;flex-shrink:0;">🏖</span>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#5a3e00;margin-bottom:3px;">여름 방학 7/19 시작 — 6주!</div>
+        <div style="font-size:12px;color:#8a6200;">인기 클럽은 자리가 빨리 찼어요. 지금 바로 확인해보세요.</div>
+      </div>
+    </div>
+    <!-- 샘플 클럽 카드 -->
+    <div style="background:#fff;border-radius:var(--radius);padding:16px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,0.07);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="width:44px;height:44px;background:#fff0e8;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">⚽</div>
+        <div style="flex:1;">
+          <div style="font-weight:700;font-size:15px;">Exeter City Football Camp</div>
+          <div style="font-size:12px;color:var(--ink-soft);">5–14세 · £35/일 · Tax-Free Childcare ✅</div>
+        </div>
+      </div>
+      <div style="font-size:13px;color:var(--ink);line-height:1.6;margin-bottom:10px;">St James Park에서 진행. 영어 걱정 없어도 돼요 — 코치들이 친절하게 이끌어줘요. 점심 도시락 지참.</div>
+      <div style="display:flex;gap:10px;font-size:12px;color:var(--ink-soft);">
+        <span>🐝 엄마 리뷰 12개</span><span>⭐ 4.8</span><span style="margin-left:auto;color:var(--gold);font-weight:700;">예약하기 →</span>
+      </div>
+    </div>
+    <div style="background:#fff;border-radius:var(--radius);padding:16px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,0.07);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="width:44px;height:44px;background:#f0ffe8;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🌿</div>
+        <div style="flex:1;">
+          <div style="font-weight:700;font-size:15px;">Haldon Forest School Camp</div>
+          <div style="font-size:12px;color:var(--ink-soft);">4–12세 · £45/일 · 엑서터 차 15분</div>
+        </div>
+      </div>
+      <div style="font-size:13px;color:var(--ink);line-height:1.6;margin-bottom:10px;">숲속 자연 탐험 + 공예. 비 와도 진행해요 (우비 챙기세요!). 현지 엄마들 사이에서 인기 최고.</div>
+      <div style="display:flex;gap:10px;font-size:12px;color:var(--ink-soft);">
+        <span>🐝 엄마 리뷰 27개</span><span>⭐ 4.9</span><span style="margin-left:auto;color:var(--gold);font-weight:700;">예약하기 →</span>
+      </div>
+    </div>
+    <div style="text-align:center;padding:16px;color:var(--ink-soft);font-size:13px;">
+      📋 클럽 정보 제보하기 → <a href="https://forms.gle/tVQQETV24frZhhpa6" style="color:var(--gold);font-weight:700;">여기 클릭</a>
+    </div>
+  </div>
   <!-- CALENDAR VIEW -->
   <div class="view" id="view-calendar">
     <div style="background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:15px;margin-bottom:12px;">
@@ -460,7 +495,6 @@
       <div class="event-panel-empty">👆 Tap a date to see what's on</div>
     </div>
   </div>
-
   <!-- MAP VIEW -->
   <div class="view" id="view-map">
     <div id="map-el"></div>
@@ -487,7 +521,6 @@
       </div>
     </div>
   </div>
-
   <!-- COMMUNITY VIEW -->
   <div class="view" id="view-community">
     <div class="section-head" style="margin-top:16px;">
@@ -501,35 +534,33 @@
       <div class="tip-cta-sub">Tips are reviewed and added to activity cards!</div>
     </div>
   </div>
-
   <!-- BOTTOM NAV -->
   <nav>
     <button class="nav-item active" data-tab="explore" onclick="switchTab(this)">
-      <span class="ico">🏠</span><span class="lbl">Explore</span>
+      <span class="ico">🗺️</span><span class="lbl">탐험</span>
+    </button>
+    <button class="nav-item" data-tab="clubs" onclick="switchTab(this)">
+      <span class="ico">🏕</span><span class="lbl">홀리데이클럽</span>
     </button>
     <button class="nav-item" data-tab="calendar" onclick="switchTab(this)">
-      <span class="ico">📅</span><span class="lbl">Calendar</span>
+      <span class="ico">📡</span><span class="lbl">AI뉴스</span>
     </button>
     <button class="nav-item" data-tab="map" onclick="switchTab(this)">
-      <span class="ico">🗺️</span><span class="lbl">Map</span>
+      <span class="ico">📍</span><span class="lbl">내지도</span>
     </button>
     <button class="nav-item" data-tab="community" onclick="switchTab(this)">
-      <span class="ico">🐝</span><span class="lbl">Community</span>
+      <span class="ico">🐝</span><span class="lbl">커뮤니티</span>
     </button>
   </nav>
-
   <div class="toast" id="toast"></div>
 </div>
-
 <script>
 /* ── CONFIG ── */
 const HOLIDAY_SHEET_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjvwZecLwxmLMRcd6Um0chyEW_2_zrmyJsL4bVZUpQ1Vu2GU5cUzF5HvyEG_jpbZz0-vxYoJfTy9J9/pub?gid=0&single=true&output=csv";
 const QA_SHEET_CSV = ""; // ← Q&A 시트 CSV URL 여기 붙여넣기
-
 const TYPE_ICONS  = {sports:"⚽",outdoor:"🌲",multi:"🎨",festival:"🎪",places:"📍",camp:"🌟",art:"🎨",music:"🎵"};
 const TYPE_BG     = {sports:"#fff0e8",outdoor:"#f0ffe8",multi:"#e8f0ff",festival:"#fce8f7",places:"#fef3d7",camp:"#fff0d6",art:"#fce8f7",music:"#e8f0ff"};
 const TYPE_COLORS = {sports:"#e8a838",outdoor:"#4caf7d",multi:"#6b8cff",festival:"#e8599a",places:"#a78bfa",camp:"#e8a838",art:"#e8599a",music:"#6b8cff"};
-
 /* ── DAYS OUT ── */
 const DAYOUT_PLACES = [
   {name:"Crealy Theme Park",region:"Exeter",emoji:"🎢",iconBg:"#fff0e8",type:"places",
@@ -592,7 +623,6 @@ const DAYOUT_PLACES = [
      kid:["Animal viewing","Open play space","Family-friendly café"],
      url:"https://www.dartsfarm.co.uk/"}},
 ];
-
 /* ── HOLIDAY CLUBS FALLBACK ── */
 const HOLIDAY_FALLBACK = [
   {name:"Rising Stars Holiday Club",type:"camp",region:"Exeter",price:"From £20/day",price_type:"paid",
@@ -636,7 +666,6 @@ const HOLIDAY_FALLBACK = [
    age_min:5,age_max:16,dates:"Weekly during term",location:"Streatham Campus, University of Exeter",
    url:"https://www.exetertenniscentre.co.uk/"},
 ];
-
 /* ── Q&A ── */
 const QUESTIONS_FALLBACK = {
   dayout:[
@@ -650,8 +679,7 @@ const QUESTIONS_FALLBACK = {
     {q:"Meraki vs Sporty Stars for an artsy 7 yr old?",author:"Yewon",bee:"👑",replies:14,when:"3d ago"},
   ],
 };
-let qaData = null; // loaded from sheet
-
+let qaData = null;
 /* ── REVIEWS ── */
 const REVIEWS = {
   dayout:[
@@ -671,13 +699,11 @@ const REVIEWS = {
      text:"Her very first camp and she made friends — relief! 👍",photos:["🎓","⚽"],likes:18,comments:4},
   ],
 };
-
 /* ── CHIPS ── */
 const CHIPS = {
   dayout:  ["All","☔ Rainy day","👶 Under 5","🧒 Age 5–12","💷 Free"],
   holiday: ["All","🌲 Outdoor","⚽ Sports","🎨 Art","⏰ Full day","🧒 Age 5–12","💷 Free"],
 };
-
 /* ── CALENDAR DATA ── */
 const SPECIFIC_EVENTS = [
   {date:"2026-06-06",name:"Exeter Respect Festival",icon:"🌍",bg:"#fce8f7",price:"£2 (free u16)"},
@@ -710,7 +736,6 @@ const SPECIFIC_EVENTS = [
   SPECIFIC_EVENTS.push({date:d,name:"Rising Stars Holiday Club",icon:"🌟",bg:"#fff0d6",price:"From £20"}));
 for(let d=new Date("2026-06-28");d<=new Date("2026-08-30");d.setDate(d.getDate()+1))
   if(d.getDay()===0) SPECIFIC_EVENTS.push({date:d.toISOString().slice(0,10),name:"Jazz on the Quay",icon:"🎵",bg:"#e8f7ee",price:"Free"});
-
 const ONGOING = [
   {name:"RAMM (free + Time Odyssey)",icon:"🏛️",bg:"#e8f0ff",price:"Free",always:true},
   {name:"Exeter Library",icon:"📚",bg:"#e8f7ee",price:"Free",always:true},
@@ -720,7 +745,6 @@ const ONGOING = [
   {name:"A Touch of the Wild",icon:"🪓",bg:"#f0ffe8",price:"£35–50/day",summer:true},
   {name:"Puffins of Exeter (29 Jul–22 Aug)",icon:"🐠",bg:"#f0f8ff",price:"£25–35/session",summer:true},
 ];
-
 /* ── MAP COORDS ── */
 const COORDS = {
   "Crealy Theme Park":[50.7100,-3.4480],
@@ -743,7 +767,6 @@ const COORDS = {
   "FISH Kids Holiday Club":[50.7270,-3.5280],
   "Junior Tennis – Exeter Tennis Centre":[50.7363,-3.5354],
 };
-
 /* ── STATE ── */
 let currentMode="dayout", currentTab="explore";
 let activeChip="All", searchTerm="";
@@ -751,7 +774,6 @@ let holidayData=null, holidayStatus="idle";
 let calYear=2026, calMonth=5, selectedDate=null;
 let leafletMap=null, mapMarkers=[], userMarker=null, userLatLng=null;
 let mapItems=[], activeSheetIdx=-1, activePill=null;
-
 /* ── HELPERS ── */
 function isSummer(d){return d>="2026-07-25"&&d<="2026-09-04";}
 function ageLabel(min,max){
@@ -777,7 +799,6 @@ function matchesChip(p,chip){
   if(chip==="🎨 Art")     return p.type==="art"||p.type==="multi";
   return true;
 }
-
 /* ── CHIPS ── */
 function renderChips(){
   document.getElementById("chips").innerHTML=
@@ -785,7 +806,6 @@ function renderChips(){
       `<div class="chip ${c===activeChip?"active":""}" data-v="${c}" onclick="filterChip(this)">${c}</div>`
     ).join("");
 }
-
 /* ── Q&A ── */
 function getQuestions(mode){
   const src = qaData || QUESTIONS_FALLBACK;
@@ -804,7 +824,7 @@ function makeQHTML(){
     </div>`).join("");
 }
 async function loadQA(){
-  if(!QA_SHEET_CSV) return; // no URL set yet — use fallback
+  if(!QA_SHEET_CSV) return;
   try{
     const res=await fetch(QA_SHEET_CSV);
     if(!res.ok) throw new Error("HTTP "+res.status);
@@ -826,13 +846,15 @@ function renderQA(){
   document.getElementById("qScroll").innerHTML=q;
   document.getElementById("commQScroll").innerHTML=q;
 }
-
 /* ── CARDS ── */
-function getDataset(){if(currentMode==="dayout") return [...DAYOUT_PLACES,...(holidayData||[]).filter(p=>p.type==="places")]; return (holidayData||[]).filter(p=>p.type!=="places");}
-
+function getDataset(){
+  return currentMode==="dayout"
+    ? DAYOUT_PLACES
+    : (holidayData||[]).filter(p=>p.type!=="places");
+}
 function cardHTML(p){
   if(currentMode==="dayout"){
-    const isFree=p.flags.includes("free");
+    const isFree=p.flags&&p.flags.includes("free");
     return `
       <div class="card-wrapper">
         <div class="card" onclick="toggleCard(this)">
@@ -845,8 +867,8 @@ function cardHTML(p){
               </div>
               ${isFree?'<div class="card-price free">Free</div>':""}
             </div>
-            <div class="rating"><span class="stars">⭐ ${p.rating}</span><span class="count">(${p.count.toLocaleString()})</span></div>
-            <div class="tags">${p.tags.map(t=>`<span class="tag tag-age">${t}</span>`).join("")}</div>
+            <div class="rating"><span class="stars">⭐ ${p.rating}</span><span class="count">(${(p.count||0).toLocaleString()})</span></div>
+            <div class="tags">${(p.tags||[]).map(t=>`<span class="tag tag-age">${t}</span>`).join("")}</div>
           </div>
           <div class="chevron">▼</div>
         </div>
@@ -907,7 +929,6 @@ function cardHTML(p){
       </div></div>
     </div>`;
 }
-
 function renderPlaces(){
   const wrap=document.getElementById("places");
   const empty=document.getElementById("emptyHint");
@@ -932,7 +953,6 @@ function renderPlaces(){
   document.getElementById("placeCount").textContent=filtered.length;
   empty.style.display=filtered.length?"none":"block";
 }
-
 function renderReviews(){
   document.getElementById("reviews").innerHTML=
     REVIEWS[currentMode].map(r=>`
@@ -955,7 +975,6 @@ function renderReviews(){
         </div>
       </div>`).join("");
 }
-
 /* ── SHEETS CSV ── */
 function parseCSV(text){
   const lines=text.replace(/\r/g,"").split("\n").filter(l=>l.trim());
@@ -1004,7 +1023,6 @@ async function loadHolidayClubs(){
   }
   if(currentMode==="holiday") renderPlaces();
 }
-
 /* ── CALENDAR ── */
 function renderCalendar(){
   const names=["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -1070,7 +1088,6 @@ function selectDate(ds){
   if(!evs.length&&!ongoing.length) html+=`<div class="event-panel-empty">Nothing specific on this date</div>`;
   document.getElementById("eventPanel").innerHTML=html;
 }
-
 /* ── MAP ── */
 function makePill(emoji,color,price,idx){
   const short=price==="Free"?"Free":price.replace(/per\s*day|\/day|\/session|members?/gi,"").trim().slice(0,7);
@@ -1165,7 +1182,6 @@ function locateMe(){
     renderMap();
   },()=>toast("위치 권한을 확인해주세요"));
 }
-
 /* ── ACTIONS ── */
 function switchMode(mode){
   currentMode=mode;activeChip="All";searchTerm="";
@@ -1201,6 +1217,20 @@ function switchTab(el){
   if(tab==="calendar") renderCalendar();
   if(tab==="map") renderMap();
 }
+// 탐험 서브카테고리 (시내/외곽/1박+)
+let activeExploreSub = "all";
+function switchExploreSub(el){
+  activeExploreSub = el.dataset.sub;
+  document.querySelectorAll(".explore-sub").forEach(b=>{
+    b.style.background = "#fff";
+    b.style.color = "var(--ink)";
+    b.style.borderColor = "var(--line-strong)";
+  });
+  el.style.background = "var(--gold)";
+  el.style.color = "#fff";
+  el.style.borderColor = "var(--gold)";
+  renderPlaces();
+}
 function like(btn){
   const span=btn.querySelector("span");let n=parseInt(span.textContent,10);
   btn.classList.contains("liked")?(btn.classList.remove("liked"),span.textContent=n-1):(btn.classList.add("liked"),span.textContent=n+1);
@@ -1210,13 +1240,12 @@ function toast(msg){
   const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");
   clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2000);
 }
-
 /* ── INIT ── */
 renderChips();
 renderQA();
 renderPlaces();
 loadQA();
-    loadHolidayClubs();
+loadHolidayClubs();
 </script>
 </body>
 </html>
