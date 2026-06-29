@@ -404,7 +404,7 @@
     <div style="display:flex;gap:8px;padding:14px 0 4px;overflow-x:auto;scrollbar-width:none;">
       <button class="explore-sub active" data-sub="all" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--gold);background:var(--gold);color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🗺 All</button>
       <button class="explore-sub" data-sub="city" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🏙 In town</button>
-      <button class="explore-sub" data-sub="outskirts" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🚗 Day trip</button>
+      <button class="explore-sub" data-sub="daytrip" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🚗 Day trip</button>
       <button class="explore-sub" data-sub="overnight" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🏕 Overnight</button>
     </div>
     <div class="section-head" style="margin-top:12px;">
@@ -563,7 +563,7 @@ const TYPE_BG     = {sports:"#fff0e8",outdoor:"#f0ffe8",multi:"#e8f0ff",festival
 const TYPE_COLORS = {sports:"#e8a838",outdoor:"#4caf7d",multi:"#6b8cff",festival:"#e8599a",places:"#a78bfa",camp:"#e8a838",art:"#e8599a",music:"#6b8cff"};
 /* ── DAYS OUT ── */
 const DAYOUT_PLACES = [
-  {name:"Crealy Theme Park",region:"Exeter",emoji:"🎢",iconBg:"#fff0e8",type:"places",area:"outskirts",
+  {name:"Crealy Theme Park",region:"Exeter",emoji:"🎢",iconBg:"#fff0e8",type:"places",area:"daytrip",
    rating:4.4,count:5620,tags:["#theme-park","#all-ages","#rainy-OK"],regionKey:"Exeter",flags:["rainy","kids"],
    detail:{price:"£28–£35",hours:"10:00–17:00",location:"Sidmouth Rd, Clyst St Mary EX5 1DR",
      good:["60+ rides & attractions","Indoor play barn","Animal handling for little ones"],
@@ -585,7 +585,7 @@ const DAYOUT_PLACES = [
      cautions:["Closed Mondays","Busy on weekend afternoons"],
      kid:["Baby-change & breastfeeding room","Prams welcome","Time Odyssey gallery"],
      url:"https://rammuseum.org.uk/"}},
-  {name:"Powderham Castle",region:"Exeter",emoji:"🏰",iconBg:"#fef3d7",type:"places",area:"outskirts",
+  {name:"Powderham Castle",region:"Exeter",emoji:"🏰",iconBg:"#fef3d7",type:"places",area:"daytrip",
    rating:4.6,count:4210,tags:["#castle","#animals","#playground","#under-5-OK"],regionKey:"Exeter",flags:["under5","kids"],
    detail:{price:"£16–£22 (family £55)",hours:"11:00–16:30",location:"Powderham, Kenton EX6 8JQ",
      good:["Deer park + tractor ride","Big adventure playground","Adventure Festival in August"],
@@ -593,7 +593,7 @@ const DAYOUT_PLACES = [
      kid:["Free child wristband","Picnics welcome","Pram-friendly trail marked"],
      url:"https://www.powderham.co.uk/",
      bookUrl:"https://www.powderham.co.uk/visit/"}},
-  {name:"Dartmoor Zoo",region:"Dartmoor",emoji:"🦁",iconBg:"#f0ffe8",type:"outdoor",area:"outskirts",
+  {name:"Dartmoor Zoo",region:"Dartmoor",emoji:"🦁",iconBg:"#f0ffe8",type:"outdoor",area:"daytrip",
    rating:4.5,count:3200,tags:["#zoo","#outdoor"],regionKey:"Dartmoor",flags:["kids"],
    detail:{price:"£17–£20",hours:"10:00–17:00",location:"Sparkwell, Plymouth PL7 5DG",
      good:["Big cats — tigers, cheetahs","Daily keeper talks","Woodland walks"],
@@ -615,7 +615,7 @@ const DAYOUT_PLACES = [
      cautions:["Quiet zones — manage noise","Limited parking nearby"],
      kid:["Baby & toddler story time","Craft tables","Cosy reading nooks"],
      url:"https://www.librariesunlimited.org.uk/"}},
-  {name:"Darts Farm",region:"Exeter",emoji:"🛒",iconBg:"#f0ffe8",type:"places",area:"outskirts",
+  {name:"Darts Farm",region:"Exeter",emoji:"🛒",iconBg:"#f0ffe8",type:"places",area:"daytrip",
    rating:4.7,count:2340,tags:["#farm","#food","#under-5-OK"],regionKey:"Exeter",flags:["under5","kids"],
    detail:{price:"Free entry",hours:"8:30–18:00",location:"Clyst St George EX3 0QH",
      good:["Farm shop + food court","Kids' trail","Regular seasonal events"],
@@ -847,9 +847,10 @@ function renderQA(){
 }
 /* ── CARDS ── */
 function getDataset(){
-  return currentMode==="dayout"
-    ? DAYOUT_PLACES
-    : (holidayData||[]).filter(p=>p.type!=="places");
+  const sheetData=holidayData||[];
+  if(currentMode==="dayout")
+    return [...DAYOUT_PLACES,...sheetData.filter(p=>p.tab==="dayout")];
+  return sheetData.filter(p=>p.tab==="club");
 }
 function cardHTML(p){
   if(currentMode==="dayout"){
@@ -994,8 +995,14 @@ function splitCSV(line){
 function mapRow(r){
   const today=new Date().toISOString().slice(0,10);
   if(r.end_date&&r.end_date<today) return null;
+  const type=(r.type||"multi").toLowerCase();
+  // tab: explicit "dayout"/"club" takes priority; fallback by type
+  const tabVal=(r.tab||"").toLowerCase();
+  const tab=tabVal==="dayout"||tabVal==="club"
+    ? tabVal
+    : (type==="places"||type==="festival"||type==="event"?"dayout":"club");
   return{
-    name:r.name,type:(r.type||"multi").toLowerCase(),
+    name:r.name,type,tab,
     price:r.price||"",price_type:(r.price_type||"paid").toLowerCase(),
     description:r.description||"",season:r.season||"",
     age_min:r.age_min||0,age_max:r.age_max||16,
