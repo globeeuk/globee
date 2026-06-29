@@ -402,10 +402,10 @@
   <div class="view active" id="view-explore">
     <!-- 탐험 서브카테고리: 시내 / 외곽 / 1박+ -->
     <div style="display:flex;gap:8px;padding:14px 0 4px;overflow-x:auto;scrollbar-width:none;">
-      <button class="explore-sub active" data-sub="all" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--gold);background:var(--gold);color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🗺 전체</button>
-      <button class="explore-sub" data-sub="city" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🏙 시내 탐험</button>
-      <button class="explore-sub" data-sub="outskirts" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🚗 외곽 탐험</button>
-      <button class="explore-sub" data-sub="overnight" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🏕 1박+ 탐험</button>
+      <button class="explore-sub active" data-sub="all" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--gold);background:var(--gold);color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🗺 All</button>
+      <button class="explore-sub" data-sub="city" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🏙 In town</button>
+      <button class="explore-sub" data-sub="outskirts" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🚗 Day trip</button>
+      <button class="explore-sub" data-sub="overnight" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🏕 Overnight</button>
     </div>
     <div class="section-head" style="margin-top:12px;">
       <h2 id="listTitle">📍 Places to visit</h2>
@@ -537,19 +537,19 @@
   <!-- BOTTOM NAV -->
   <nav>
     <button class="nav-item active" data-tab="explore" onclick="switchTab(this)">
-      <span class="ico">🗺️</span><span class="lbl">탐험</span>
+      <span class="ico">🗺️</span><span class="lbl">Explore</span>
     </button>
     <button class="nav-item" data-tab="clubs" onclick="switchTab(this)">
-      <span class="ico">🏕</span><span class="lbl">홀리데이클럽</span>
+      <span class="ico">🏕</span><span class="lbl">Clubs</span>
     </button>
     <button class="nav-item" data-tab="calendar" onclick="switchTab(this)">
-      <span class="ico">📡</span><span class="lbl">AI뉴스</span>
+      <span class="ico">📅</span><span class="lbl">Calendar</span>
     </button>
     <button class="nav-item" data-tab="map" onclick="switchTab(this)">
-      <span class="ico">📍</span><span class="lbl">내지도</span>
+      <span class="ico">🗺️</span><span class="lbl">Map</span>
     </button>
     <button class="nav-item" data-tab="community" onclick="switchTab(this)">
-      <span class="ico">🐝</span><span class="lbl">커뮤니티</span>
+      <span class="ico">🐝</span><span class="lbl">Community</span>
     </button>
   </nav>
   <div class="toast" id="toast"></div>
