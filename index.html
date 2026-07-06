@@ -608,7 +608,7 @@ const QUESTIONS_FALLBACK = {
 let qaData = null;
 /* ── KIDS EAT FREE (Exeter-verified, summer 2026) ── */
 const EAT_DEALS = [
-  {name:"Morrisons Café",where:"Prince Charles Rd, EX4 7BY",deal:"1 kid eats free with adult main £5+",price:"Free",icon:"🛒",bg:"#f0ffe8",url:"https://my.morrisons.com/cafe/"},
+  {name:"Morrisons Café",where:"Prince Charles Rd, EX4 7BY",deal:"1 kid eats free with adult main £5+",price:"Free",icon:"🛒",bg:"#f0ffe8",url:"https://www.morrisons.com/inspiration/shopping-at-morrisons/cafe"},
   {name:"Bella Italia",where:"Queen St, city centre",deal:"Kids eat free Sun–Thu with adult main",price:"Free",icon:"🍝",bg:"#fce8f7",url:"https://www.bellaitalia.co.uk/"},
   {name:"Hub Box",where:"Exeter city centre",deal:"Kids-eat-free promos in school holidays — check terms",price:"Free*",icon:"🍔",bg:"#fff0e8",url:"https://hubbox.co.uk/"},
   {name:"Pizza Express",where:"Exeter",deal:"£1 kids' Piccolo meal via their app (participating branches)",price:"£1",icon:"🍕",bg:"#e8f0ff",url:"https://www.pizzaexpress.com/"},
@@ -873,6 +873,16 @@ function cardHTML(p){
       </div></div>
     </div>`;
 }
+function toggleExploreSections(show){
+  // Coming up + standalone Kids eat free + area sub-bar (only meaningful in dayout mode)
+  if(currentMode!=="dayout") return;
+  ["upcomingHead","upcomingCards","eatDealsHead","eatDeals"].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.style.display=show?"":"none";
+  });
+  const sub=document.getElementById("areaSubBar");
+  if(sub) sub.style.display=show?"flex":"none"; // inline flex style
+}
 function renderPlaces(){
   const wrap=document.getElementById("places");
   const empty=document.getElementById("emptyHint");
@@ -886,14 +896,18 @@ function renderPlaces(){
     wrap.innerHTML=`<div class="error-state"><strong>⚠️ Couldn't reach the sheet</strong>Showing sample clubs.<br><button class="retry" onclick="loadHolidayClubs()">↻ Try again</button></div>`;
     banner=wrap.innerHTML;
   }
-  // "Kids eat free" chip shows the eat deals instead of places
-  if(currentMode==="dayout"&&activeChip==="🍽 Kids eat free"){
+  // "Kids eat free" chip shows ONLY the eat deals (hide other explore sections)
+  const eatChipActive=currentMode==="dayout"&&activeChip==="🍽 Kids eat free";
+  toggleExploreSections(!eatChipActive);
+  if(eatChipActive){
+    document.getElementById("listTitle").textContent="🍽 Kids eat free";
     const deals=searchTerm?EAT_DEALS.filter(d=>`${d.name} ${d.where} ${d.deal}`.toLowerCase().includes(searchTerm)):EAT_DEALS;
     wrap.innerHTML=deals.map(dealHTML).join("")+(deals.length?EAT_DEALS_NOTE:"");
     document.getElementById("placeCount").textContent=deals.length;
     empty.style.display=deals.length?"none":"block";
     return;
   }
+  if(currentMode==="dayout") document.getElementById("listTitle").textContent="📅 What's on";
   const data=getDataset();
   const filtered=data.filter(p=>{
     const c=matchesChip(p,activeChip);
