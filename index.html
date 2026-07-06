@@ -107,7 +107,6 @@
   #view-map.active{display:block;position:relative;overflow:hidden;}
   #view-explore{padding:0 16px 90px;}
   #view-calendar{padding:14px 16px 90px;}
-  #view-community{padding:0 16px 90px;}
   #view-map{position:relative;overflow:hidden;}
   /* SECTION HEADS */
   .section-head{
@@ -213,32 +212,6 @@
   .error-state strong{display:block;margin-bottom:4px;color:var(--gold-dark);}
   .error-state .retry{margin-top:9px;background:var(--gold);color:#fff;border:none;padding:6px 14px;border-radius:999px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;}
   .empty-hint{text-align:center;color:var(--ink-mute);font-size:12.5px;padding:28px 10px;display:none;}
-  /* REVIEWS */
-  .write-cta{
-    width:100%;background:var(--gold);color:#fff;border:none;
-    font-size:13.5px;font-weight:700;font-family:inherit;
-    padding:13px;border-radius:var(--radius-sm);cursor:pointer;
-    margin:5px 0 4px;box-shadow:0 6px 16px rgba(232,168,56,0.25);
-    transition:transform .15s;text-decoration:none;display:block;text-align:center;
-  }
-  .write-cta:active{transform:scale(.98);}
-  .review{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:13px;margin-bottom:10px;}
-  .review-head{display:flex;align-items:center;gap:9px;margin-bottom:8px;}
-  .avatar{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;background:linear-gradient(135deg,#fef3d7,#fff8ec);}
-  .review-who{flex:1;min-width:0;}
-  .review-name{font-size:13px;font-weight:700;display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
-  .lvl{font-size:10.5px;color:var(--ink-mute);font-weight:500;}
-  .review-place{font-size:11px;color:var(--gold-dark);font-weight:600;margin-top:1px;}
-  .review-time{font-size:10.5px;color:var(--ink-mute);flex-shrink:0;}
-  .review-stars{color:var(--gold);font-size:12px;margin-bottom:5px;}
-  .review-text{font-size:13px;color:var(--ink);line-height:1.55;}
-  .review-photos{display:flex;gap:6px;overflow-x:auto;margin-top:9px;scrollbar-width:none;}
-  .review-photos::-webkit-scrollbar{display:none;}
-  .photo{flex:0 0 76px;height:76px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:26px;background:linear-gradient(135deg,var(--green-soft),#d6ebdf);}
-  .react{display:flex;gap:14px;margin-top:10px;padding-top:9px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft);}
-  .react button{background:none;border:none;font:inherit;color:inherit;cursor:pointer;display:flex;align-items:center;gap:3px;transition:transform .15s;}
-  .react button:active{transform:scale(.9);}
-  .react button.liked{color:#E0556E;font-weight:600;}
   /* ── CALENDAR ── */
   .cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
   .cal-month-name{font-size:16px;font-weight:800;}
@@ -266,8 +239,9 @@
   .event-panel-header{padding:11px 14px 7px;border-bottom:1px solid var(--line);font-size:12.5px;font-weight:700;}
   .event-panel-empty{padding:26px 14px;text-align:center;color:#bbb;font-size:12.5px;}
   .event-section-label{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#aaa;padding:9px 14px 3px;}
-  .event-item{display:flex;align-items:center;gap:9px;padding:7px 14px;border-top:1px solid #f8f5f0;transition:background .1s;}
+  .event-item{display:flex;align-items:center;gap:9px;padding:7px 14px;border-top:1px solid #f8f5f0;transition:background .1s;cursor:pointer;}
   .event-item:hover{background:#fffdf8;}
+  .event-item:active{background:#fff7e8;}
   .event-item-icon{width:31px;height:31px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
   .event-item-info{flex:1;min-width:0;}
   .event-item-name{font-size:12px;font-weight:600;line-height:1.3;}
@@ -400,13 +374,25 @@
   </div>
   <!-- EXPLORE VIEW -->
   <div class="view active" id="view-explore">
-    <!-- 탐험 서브카테고리: 시내 / 외곽 / 1박+ -->
+    <!-- Explore sub-categories: In town / Day trip / Overnight -->
     <div id="areaSubBar" style="display:flex;gap:8px;padding:14px 0 4px;overflow-x:auto;scrollbar-width:none;">
       <button class="explore-sub active" data-sub="all" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--gold);background:var(--gold);color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🗺 All</button>
       <button class="explore-sub" data-sub="city" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🏙 In town</button>
       <button class="explore-sub" data-sub="daytrip" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🚗 Day trip</button>
       <button class="explore-sub" data-sub="overnight" onclick="switchExploreSub(this)" style="flex-shrink:0;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">🏕 Overnight</button>
     </div>
+    <!-- Coming up: calendar event card preview -->
+    <div class="section-head" style="margin-top:14px;" id="upcomingHead">
+      <h2>🗓 Coming up</h2>
+      <span class="more" style="cursor:pointer;color:var(--gold);font-weight:700;" onclick="gotoCalendar()">Calendar →</span>
+    </div>
+    <div id="upcomingCards"></div>
+    <!-- Kids eat free deals (Exeter-verified) -->
+    <div class="section-head" style="margin-top:14px;" id="eatDealsHead">
+      <h2>🍽 Kids eat free</h2>
+      <span class="more" style="color:var(--ink-mute);font-size:11px;">Summer 2026</span>
+    </div>
+    <div id="eatDeals"></div>
     <div class="section-head" style="margin-top:12px;">
       <h2 id="listTitle">📍 Places to visit</h2>
       <span class="more"><strong id="placeCount">0</strong> listed</span>
@@ -422,59 +408,6 @@
       <div class="tips-label">✏️ TIPS</div>
       <a class="tip-cta" href="https://forms.gle/tVQQETV24frZhhpa6" target="_blank" rel="noopener">✏️ Leave a Tip 🐝</a>
       <div class="tip-cta-sub">Tips are reviewed and added to activity cards!</div>
-    </div>
-  </div>
-  <!-- HOLIDAY CLUBS VIEW -->
-  <div class="view" id="view-clubs" style="padding:0 16px 90px;">
-    <div style="background:linear-gradient(135deg,#4caf7d,#38d9a9);border-radius:var(--radius);padding:18px;margin:16px 0 14px;color:#fff;">
-      <div style="font-size:18px;font-weight:800;margin-bottom:4px;">🏕 홀리데이 클럽</div>
-      <div style="font-size:13px;opacity:.85;">방학 때 아이 보낼 곳을 찾고 있나요?<br>현지 엄마들이 직접 검증한 클럽 정보예요.</div>
-    </div>
-    <!-- 클럽 유형 필터 -->
-    <div style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-bottom:16px;">
-      <button style="flex-shrink:0;padding:7px 13px;border-radius:50px;border:1.5px solid var(--gold);background:var(--gold);color:#fff;font-size:12px;font-weight:700;cursor:pointer;">전체</button>
-      <button style="flex-shrink:0;padding:7px 13px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:12px;font-weight:700;cursor:pointer;">⚽ 스포츠</button>
-      <button style="flex-shrink:0;padding:7px 13px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:12px;font-weight:700;cursor:pointer;">🎨 액티비티</button>
-      <button style="flex-shrink:0;padding:7px 13px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:12px;font-weight:700;cursor:pointer;">🌿 자연·야외</button>
-      <button style="flex-shrink:0;padding:7px 13px;border-radius:50px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font-size:12px;font-weight:700;cursor:pointer;">🧠 교육</button>
-    </div>
-    <!-- 방학 시즌 배너 -->
-    <div style="background:#FFF9E6;border:1.5px solid var(--gold);border-radius:var(--radius-sm);padding:13px 15px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px;">
-      <span style="font-size:22px;flex-shrink:0;">🏖</span>
-      <div>
-        <div style="font-size:13px;font-weight:700;color:#5a3e00;margin-bottom:3px;">여름 방학 7/19 시작 — 6주!</div>
-        <div style="font-size:12px;color:#8a6200;">인기 클럽은 자리가 빨리 찼어요. 지금 바로 확인해보세요.</div>
-      </div>
-    </div>
-    <!-- 샘플 클럽 카드 -->
-    <div style="background:#fff;border-radius:var(--radius);padding:16px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,0.07);">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <div style="width:44px;height:44px;background:#fff0e8;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">⚽</div>
-        <div style="flex:1;">
-          <div style="font-weight:700;font-size:15px;">Exeter City Football Camp</div>
-          <div style="font-size:12px;color:var(--ink-soft);">5–14세 · £35/일 · Tax-Free Childcare ✅</div>
-        </div>
-      </div>
-      <div style="font-size:13px;color:var(--ink);line-height:1.6;margin-bottom:10px;">St James Park에서 진행. 영어 걱정 없어도 돼요 — 코치들이 친절하게 이끌어줘요. 점심 도시락 지참.</div>
-      <div style="display:flex;gap:10px;font-size:12px;color:var(--ink-soft);">
-        <span>🐝 엄마 리뷰 12개</span><span>⭐ 4.8</span><span style="margin-left:auto;color:var(--gold);font-weight:700;">예약하기 →</span>
-      </div>
-    </div>
-    <div style="background:#fff;border-radius:var(--radius);padding:16px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,0.07);">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <div style="width:44px;height:44px;background:#f0ffe8;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🌿</div>
-        <div style="flex:1;">
-          <div style="font-weight:700;font-size:15px;">Haldon Forest School Camp</div>
-          <div style="font-size:12px;color:var(--ink-soft);">4–12세 · £45/일 · 엑서터 차 15분</div>
-        </div>
-      </div>
-      <div style="font-size:13px;color:var(--ink);line-height:1.6;margin-bottom:10px;">숲속 자연 탐험 + 공예. 비 와도 진행해요 (우비 챙기세요!). 현지 엄마들 사이에서 인기 최고.</div>
-      <div style="display:flex;gap:10px;font-size:12px;color:var(--ink-soft);">
-        <span>🐝 엄마 리뷰 27개</span><span>⭐ 4.9</span><span style="margin-left:auto;color:var(--gold);font-weight:700;">예약하기 →</span>
-      </div>
-    </div>
-    <div style="text-align:center;padding:16px;color:var(--ink-soft);font-size:13px;">
-      📋 클럽 정보 제보하기 → <a href="https://forms.gle/tVQQETV24frZhhpa6" style="color:var(--gold);font-weight:700;">여기 클릭</a>
     </div>
   </div>
   <!-- CALENDAR VIEW -->
@@ -521,19 +454,6 @@
       </div>
     </div>
   </div>
-  <!-- COMMUNITY VIEW -->
-  <div class="view" id="view-community">
-    <div class="section-head" style="margin-top:16px;">
-      <h2>💬 Community Q&amp;A</h2>
-      <a class="ask-btn" href="https://forms.gle/tVQQETV24frZhhpa6" target="_blank" rel="noopener">✏️ Ask</a>
-    </div>
-    <div class="q-scroll" id="commQScroll"></div>
-    <div style="margin:20px 0 24px;">
-      <div class="tips-label">✏️ TIPS</div>
-      <a class="tip-cta" href="https://forms.gle/tVQQETV24frZhhpa6" target="_blank" rel="noopener">✏️ Leave a Tip 🐝</a>
-      <div class="tip-cta-sub">Tips are reviewed and added to activity cards!</div>
-    </div>
-  </div>
   <!-- BOTTOM NAV -->
   <nav>
     <button class="nav-item active" data-tab="explore" onclick="switchTab(this)">
@@ -548,16 +468,14 @@
     <button class="nav-item" data-tab="map" onclick="switchTab(this)">
       <span class="ico">🗺️</span><span class="lbl">Map</span>
     </button>
-    <button class="nav-item" data-tab="community" onclick="switchTab(this)">
-      <span class="ico">🐝</span><span class="lbl">Community</span>
-    </button>
   </nav>
   <div class="toast" id="toast"></div>
 </div>
 <script>
 /* ── CONFIG ── */
 const HOLIDAY_SHEET_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjvwZecLwxmLMRcd6Um0chyEW_2_zrmyJsL4bVZUpQ1Vu2GU5cUzF5HvyEG_jpbZz0-vxYoJfTy9J9/pub?gid=0&single=true&output=csv";
-const QA_SHEET_CSV = ""; // ← Q&A 시트 CSV URL 여기 붙여넣기
+const QA_SHEET_CSV = ""; // ← Paste the Q&A sheet CSV URL here
+const EVENTS_SHEET_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjvwZecLwxmLMRcd6Um0chyEW_2_zrmyJsL4bVZUpQ1Vu2GU5cUzF5HvyEG_jpbZz0-vxYoJfTy9J9/pub?gid=1801686098&single=true&output=csv"; // events tab (columns: date,end,name,icon,price,bg)
 const TYPE_ICONS  = {sports:"⚽",outdoor:"🌲",multi:"🎨",festival:"🎪",places:"📍",camp:"🌟",art:"🎨",music:"🎵"};
 const TYPE_BG     = {sports:"#fff0e8",outdoor:"#f0ffe8",multi:"#e8f0ff",festival:"#fce8f7",places:"#fef3d7",camp:"#fff0d6",art:"#fce8f7",music:"#e8f0ff"};
 const TYPE_COLORS = {sports:"#e8a838",outdoor:"#4caf7d",multi:"#6b8cff",festival:"#e8599a",places:"#a78bfa",camp:"#e8a838",art:"#e8599a",music:"#6b8cff"};
@@ -680,29 +598,35 @@ const QUESTIONS_FALLBACK = {
   ],
 };
 let qaData = null;
-/* ── REVIEWS ── */
-const REVIEWS = {
-  dayout:[
-    {avatar:"👩",name:"Sarah",bee:"🐝🐝",lvl:"Junior Bee",place:"Crealy Theme Park",time:"2d ago",stars:"★★★★★",
-     text:"Loved every minute! 60+ rides and a toddler zone — the indoor barn saved us when the rain came 👍",photos:["🎢","🎠","🍦"],likes:24,comments:5},
-    {avatar:"👑",name:"Yewon",bee:"👑",lvl:"Queen Bee · local expert",place:"Exeter Quay",time:"4d ago",stars:"★★★★★",
-     text:"Flat path so the pram glides, completely free. Sunday mornings are best ⛵",photos:["⛵","🦆","☕","🌿"],likes:41,comments:9},
-    {avatar:"🧑",name:"Emma",bee:"🐝",lvl:"Worker Bee",place:"RAMM Museum",time:"6d ago",stars:"★★★★☆",
-     text:"A free museum that's genuinely good. Perfect rainy-day plan 🏛️",photos:["🏛️","🦣"],likes:12,comments:2},
-  ],
-  holiday:[
-    {avatar:"👩",name:"Sarah",bee:"🐝🐝",lvl:"Junior Bee",place:"Sporty Stars Holiday Camps",time:"5d ago",stars:"★★★★★",
-     text:"My 6 yr old came home buzzing every day. Total lifesaver for working mums 🙏",photos:["⚽","🏆","🎯"],likes:38,comments:11},
-    {avatar:"👑",name:"Yewon",bee:"👑",lvl:"Queen Bee · local expert",place:"Meraki Art School",time:"1w ago",stars:"★★★★★",
-     text:"My daughter is art-mad and bringing home a finished canvas is the cutest thing 🎨",photos:["🎨","🖼️","✨"],likes:52,comments:14},
-    {avatar:"🧑",name:"Emma",bee:"🐝",lvl:"Worker Bee",place:"Premier Education – St Luke's",time:"2w ago",stars:"★★★★☆",
-     text:"Her very first camp and she made friends — relief! 👍",photos:["🎓","⚽"],likes:18,comments:4},
-  ],
-};
+/* ── KIDS EAT FREE (Exeter-verified, summer 2026) ── */
+const EAT_DEALS = [
+  {name:"Morrisons Café",where:"Prince Charles Rd, EX4 7BY",deal:"1 kid eats free with adult main £5+",price:"Free",icon:"🛒",bg:"#f0ffe8",url:"https://my.morrisons.com/cafe/"},
+  {name:"Bella Italia",where:"Queen St, city centre",deal:"Kids eat free Sun–Thu with adult main",price:"Free",icon:"🍝",bg:"#fce8f7",url:"https://www.bellaitalia.co.uk/"},
+  {name:"Hub Box",where:"Exeter city centre",deal:"Kids-eat-free promos in school holidays — check terms",price:"Free*",icon:"🍔",bg:"#fff0e8",url:"https://hubbox.co.uk/"},
+  {name:"Pizza Express",where:"Exeter",deal:"£1 kids' Piccolo meal via their app (participating branches)",price:"£1",icon:"🍕",bg:"#e8f0ff",url:"https://www.pizzaexpress.com/"},
+  {name:"Zizzi",where:"Gandy St",deal:"Kids' menu deals — check current offer",price:"Deal",icon:"🍴",bg:"#fef3d7",url:"https://www.zizzi.co.uk/"},
+];
+function dealHTML(d){
+  return `
+    <a href="${d.url}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:8px;text-decoration:none;color:inherit;">
+      <div style="width:42px;height:42px;border-radius:10px;background:${d.bg};display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0;">${d.icon}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-weight:700;font-size:14px;">${d.name} <span style="font-weight:500;font-size:11px;color:var(--ink-mute);">· ${d.where}</span></div>
+        <div style="font-size:12px;color:var(--ink-soft);">${d.deal}</div>
+      </div>
+      <span style="flex-shrink:0;font-size:11px;font-weight:700;padding:4px 10px;border-radius:50px;${d.price.startsWith("Free")?"background:#e8f7ee;color:#2e7d54;":"background:#fef3d7;color:#8a6200;"}">${d.price}</span>
+    </a>`;
+}
+const EAT_DEALS_NOTE=`<div style="font-size:11px;color:var(--ink-mute);padding:2px 4px 6px;">ℹ️ Asda's £1 kids' meal: no Exeter store (nearest ~20km). Offers change — check each provider before you go.</div>`;
+function renderEatDeals(){
+  const box=document.getElementById("eatDeals");
+  if(!box) return;
+  box.innerHTML=EAT_DEALS.map(dealHTML).join("")+EAT_DEALS_NOTE;
+}
 /* ── CHIPS ── */
 const CHIPS = {
-  dayout:  ["All","👶 Under 5","🧒 Age 5–12","💷 Free"],
-  holiday: ["All","🌲 Outdoor","⚽ Sports","🎨 Art","🧒 Age 5–12","💷 Free"],
+  dayout:  ["All","👶 Under 5","🧒 Age 5–12","💷 Free","🍽 Kids eat free"],
+  holiday: ["All","🌲 Outdoor","⚽ Sports","🎨 Art","💷 Free"],
 };
 /* ── CALENDAR DATA ── */
 const SPECIFIC_EVENTS = [
@@ -727,7 +651,17 @@ const SPECIFIC_EVENTS = [
   {date:"2026-08-28",name:"Powderham Adventure Festival",icon:"🏕️",bg:"#f0ffe8",price:"Ticketed"},
   {date:"2026-08-29",name:"Powderham Adventure Festival",icon:"🏕️",bg:"#f0ffe8",price:"Ticketed"},
   {date:"2026-08-30",name:"Powderham Adventure Festival",icon:"🏕️",bg:"#f0ffe8",price:"Ticketed"},
+  {date:"2026-07-11",name:"Historic Vehicle Gathering – Powderham",icon:"🚗",bg:"#f0ffe8",price:"Ticketed"},
+  {date:"2026-07-12",name:"Historic Vehicle Gathering – Powderham",icon:"🚗",bg:"#f0ffe8",price:"Ticketed"},
+  {date:"2026-07-25",name:"Farewell Jamaica – Exeter Library",icon:"🎭",bg:"#e8f7ee",price:"Ticketed"},
+  {date:"2026-07-29",name:"The Librarians – Exmouth Library (4–9)",icon:"🎭",bg:"#e8f7ee",price:"Ticketed"},
 ];
+["2026-07-30","2026-07-31","2026-08-01","2026-08-02"].forEach(d=>
+  SPECIFIC_EVENTS.push({date:d,name:"Theatre in the Park: Twelfth Night",icon:"🎭",bg:"#e8f0ff",price:"Ticketed"}));
+["2026-08-14","2026-08-15","2026-08-16"].forEach(d=>
+  SPECIFIC_EVENTS.push({date:d,name:"Paper Stars – Exeter Northcott",icon:"🎭",bg:"#e8f0ff",price:"Ticketed"}));
+["2026-07-24","2026-07-31","2026-08-07"].forEach(d=>
+  SPECIFIC_EVENTS.push({date:d,name:"LEGO & Board Games – Exmouth Library",icon:"🧱",bg:"#fff0d6",price:"Free"}));
 ["2026-06-06","2026-07-04","2026-08-01"].forEach(d=>
   SPECIFIC_EVENTS.push({date:d,name:"Cathedral Independent Market",icon:"🛍️",bg:"#fef3d7",price:"Free"}));
 ["2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-01"].forEach(d=>
@@ -744,6 +678,8 @@ const ONGOING = [
   {name:"Laser Camps",icon:"🎯",bg:"#fff0f8",price:"£40–55/day",summer:true},
   {name:"A Touch of the Wild",icon:"🪓",bg:"#f0ffe8",price:"£35–50/day",summer:true},
   {name:"Puffins of Exeter (29 Jul–22 Aug)",icon:"🐠",bg:"#f0f8ff",price:"£25–35/session",summer:true},
+  {name:"Exeter Library Summer Workshops (6–11)",icon:"📚",bg:"#e8f7ee",price:"Free–low cost",summer:true},
+  {name:"Exeter Phoenix Family Workshops",icon:"🎨",bg:"#fce8f7",price:"Paid",summer:true},
 ];
 /* ── MAP COORDS ── */
 const COORDS = {
@@ -788,10 +724,11 @@ function matchesChip(p,chip){
   if(chip==="📍 Exeter")   return (p.regionKey||p.region)==="Exeter";
   if(chip==="🌿 Dartmoor") return (p.regionKey||p.region)==="Dartmoor";
   if(chip==="☔ Rainy day") return p.flags&&p.flags.includes("rainy");
-  if(chip==="👶 Under 5")  return p.flags&&p.flags.includes("under5");
-  if(chip==="🧒 Age 5–12") return p.flags
-    ? p.flags.includes("kids")
-    : (p.age_min!=null&&p.age_max!=null&&p.age_min<=12&&p.age_max>=5);
+  if(chip==="👶 Under 5")  return (p.age_min!=null?parseInt(p.age_min)<=2:false)||(p.flags&&p.flags.includes("under5"));
+  if(chip==="🧒 Age 5–12"){
+    if(p.age_min!=null&&p.age_max!=null) return parseInt(p.age_min)<=12&&parseInt(p.age_max)>=5;
+    return p.flags&&p.flags.includes("kids");
+  }
   if(chip==="💷 Free")     return (p.flags&&p.flags.includes("free"))||(p.price_type||"").toLowerCase()==="free";
   if(chip==="🌲 Outdoor") return p.type==="outdoor";
   if(chip==="⚽ Sports")  return p.type==="sports";
@@ -841,19 +778,17 @@ async function loadQA(){
   }
 }
 function renderQA(){
-  const q=makeQHTML();
-  document.getElementById("qScroll").innerHTML=q;
-  document.getElementById("commQScroll").innerHTML=q;
+  document.getElementById("qScroll").innerHTML=makeQHTML();
 }
 /* ── CARDS ── */
 function getDataset(){
   const sheetData=holidayData||[];
   if(currentMode==="dayout")
     return [...DAYOUT_PLACES,...sheetData.filter(p=>p.tab==="dayout")];
-  return sheetData.filter(p=>p.tab==="club");
+  return sheetData.filter(p=>!p.tab||p.tab==="club"); // fallback items have no tab
 }
 function cardHTML(p){
-  if(currentMode==="dayout"){
+  if(currentMode==="dayout"&&p.detail){
     const isFree=p.flags&&p.flags.includes("free");
     return `
       <div class="card-wrapper">
@@ -942,6 +877,14 @@ function renderPlaces(){
     wrap.innerHTML=`<div class="error-state"><strong>⚠️ Couldn't reach the sheet</strong>Showing sample clubs.<br><button class="retry" onclick="loadHolidayClubs()">↻ Try again</button></div>`;
     banner=wrap.innerHTML;
   }
+  // "Kids eat free" chip shows the eat deals instead of places
+  if(currentMode==="dayout"&&activeChip==="🍽 Kids eat free"){
+    const deals=searchTerm?EAT_DEALS.filter(d=>`${d.name} ${d.where} ${d.deal}`.toLowerCase().includes(searchTerm)):EAT_DEALS;
+    wrap.innerHTML=deals.map(dealHTML).join("")+(deals.length?EAT_DEALS_NOTE:"");
+    document.getElementById("placeCount").textContent=deals.length;
+    empty.style.display=deals.length?"none":"block";
+    return;
+  }
   const data=getDataset();
   const filtered=data.filter(p=>{
     const c=matchesChip(p,activeChip);
@@ -953,28 +896,6 @@ function renderPlaces(){
   wrap.innerHTML=banner+filtered.map(p=>cardHTML(p)).join("");
   document.getElementById("placeCount").textContent=filtered.length;
   empty.style.display=filtered.length?"none":"block";
-}
-function renderReviews(){
-  document.getElementById("reviews").innerHTML=
-    REVIEWS[currentMode].map(r=>`
-      <div class="review">
-        <div class="review-head">
-          <div class="avatar">${r.avatar}</div>
-          <div class="review-who">
-            <div class="review-name">${r.name} <span class="bee">${r.bee}</span> <span class="lvl">${r.lvl}</span></div>
-            <div class="review-place">${r.place}</div>
-          </div>
-          <div class="review-time">${r.time}</div>
-        </div>
-        <div class="review-stars">${r.stars}</div>
-        <div class="review-text">${r.text}</div>
-        <div class="review-photos">${r.photos.map(p=>`<div class="photo">${p}</div>`).join("")}</div>
-        <div class="react">
-          <button onclick="like(this)">❤️ <span>${r.likes}</span></button>
-          <button onclick="toast('Comments coming soon')">💬 <span>${r.comments}</span></button>
-          <button onclick="toast('Saved 📌')">📌 Save</button>
-        </div>
-      </div>`).join("");
 }
 /* ── SHEETS CSV ── */
 function parseCSV(text){
@@ -1005,12 +926,13 @@ function mapRow(r){
     name:r.name,type,tab,
     price:r.price||"",price_type:(r.price_type||"paid").toLowerCase(),
     description:r.description||"",season:r.season||"",
-    age_min:r.age_min||0,age_max:r.age_max||16,
+    age_min:r.age_min!==""&&r.age_min!=null?r.age_min:null,
+    age_max:r.age_max!==""&&r.age_max!=null?r.age_max:null,
     dates:r.dates||"",location:r.location||"",url:r.url||"",
     featured:(r.featured||"").toLowerCase()==="true"||(r.name||"").toLowerCase().includes("rising stars"),
     regionKey:(r.location||"").toLowerCase().includes("dartmoor")?"Dartmoor"
              :(r.location||"").toLowerCase().includes("exeter")?"Exeter":(r.region||""),
-    flags:[(r.price_type||"").toLowerCase()==="free"?"free":null].filter(Boolean),
+    flags:[((r.price_type||"").toLowerCase()==="free"||/free/i.test(r.price||""))?"free":null].filter(Boolean),
   };
 }
 async function loadHolidayClubs(){
@@ -1028,6 +950,62 @@ async function loadHolidayClubs(){
   }
   if(currentMode==="holiday") renderPlaces();
 }
+/* ── SHEET EVENTS ── */
+async function loadSheetEvents(){
+  if(!EVENTS_SHEET_CSV) return;
+  try{
+    const res=await fetch(EVENTS_SHEET_CSV);
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    const rows=parseCSV(await res.text());
+    const seen=new Set(SPECIFIC_EVENTS.map(e=>e.date+"|"+e.name));
+    rows.forEach(r=>{
+      if(!r.date||!r.name) return;
+      const start=new Date(r.date), end=new Date(r.end||r.date);
+      if(isNaN(start)) return;
+      for(let d=new Date(start); d<=end; d.setDate(d.getDate()+1)){
+        const ds=d.toISOString().slice(0,10);
+        if(seen.has(ds+"|"+r.name)) continue;
+        seen.add(ds+"|"+r.name);
+        SPECIFIC_EVENTS.push({date:ds,name:r.name,icon:r.icon||"🎪",bg:r.bg||"#fef3d7",price:r.price||"—"});
+      }
+    });
+    renderUpcoming();
+    if(currentTab==="calendar") renderCalendar();
+  }catch(e){console.error("[Globee] Events sheet error:",e);}
+}
+/* ── COMING UP CARDS ── */
+function gotoCalendar(){
+  const btn=document.querySelector('.nav-item[data-tab="calendar"]');
+  if(btn) switchTab(btn);
+}
+function renderUpcoming(){
+  const box=document.getElementById("upcomingCards");
+  if(!box) return;
+  const today=new Date().toISOString().slice(0,10);
+  // group multi-day events: name -> first upcoming date + last date
+  const groups={};
+  SPECIFIC_EVENTS.filter(e=>e.date>=today).forEach(e=>{
+    const g=groups[e.name]||(groups[e.name]={...e,first:e.date,last:e.date});
+    if(e.date<g.first) g.first=e.date;
+    if(e.date>g.last) g.last=e.date;
+  });
+  const list=Object.values(groups).sort((a,b)=>a.first.localeCompare(b.first)).slice(0,8);
+  if(!list.length){box.innerHTML="";return;}
+  const fmt=ds=>{const d=new Date(ds);return d.toLocaleDateString("en-GB",{day:"numeric",month:"short"});};
+  const wk=ds=>new Date(ds).toLocaleDateString("en-GB",{weekday:"short"});
+  box.innerHTML=list.map(g=>{
+    const dateStr=g.first===g.last?`${wk(g.first)} ${fmt(g.first)}`:`${fmt(g.first)} – ${fmt(g.last)}`;
+    const free=g.price==="Free"||(g.price||"").toLowerCase().includes("free");
+    return `<div onclick="gotoCalendar();selectDate('${g.first}')" style="display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:8px;cursor:pointer;">
+      <div style="width:42px;height:42px;border-radius:10px;background:${g.bg};display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0;">${g.icon}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${g.name}</div>
+        <div style="font-size:12px;color:var(--ink-soft);">${dateStr}</div>
+      </div>
+      <span style="flex-shrink:0;font-size:11px;font-weight:700;padding:4px 10px;border-radius:50px;${free?"background:#e8f7ee;color:#2e7d54;":"background:#fef3d7;color:#8a6200;"}">${free?"Free":g.price}</span>
+    </div>`;
+  }).join("");
+}
 /* ── CALENDAR ── */
 function renderCalendar(){
   const names=["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -1043,8 +1021,8 @@ function renderCalendar(){
   for(let d=1;d<=days;d++){
     const ds=`${calYear}-${String(calMonth+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
     const evs=SPECIFIC_EVENTS.filter(e=>e.date===ds);
-    const hasFree=evs.some(e=>e.price==="Free"||e.price.includes("free")||e.price.startsWith("£2"));
-    const hasPaid=evs.some(e=>e.price!=="Free"&&!e.price.includes("free"));
+    const hasFree=evs.some(e=>/free/i.test(e.price||""));
+    const hasPaid=evs.some(e=>!/free/i.test(e.price||""));
     let cls="cal-day";
     if(evs.length) cls+=" has-events";
     if(ds===today) cls+=" today";
@@ -1071,7 +1049,7 @@ function selectDate(ds){
     html+=`<div class="event-section-label">On this day</div>`;
     evs.forEach(e=>{
       const isFree=e.price==="Free"||e.price.includes("free");
-      html+=`<div class="event-item">
+      html+=`<div class="event-item" data-ev="${e.name.replace(/"/g,"&quot;")}" onclick="openEventDetail(this.dataset.ev)">
         <div class="event-item-icon" style="background:${e.bg}">${e.icon}</div>
         <div class="event-item-info"><div class="event-item-name">${e.name}</div></div>
         <div class="event-item-price${isFree?" free":""}">${e.price}</div>
@@ -1083,10 +1061,11 @@ function selectDate(ds){
   if(ongoing.length){
     html+=`<div class="event-section-label">${summer?"Also this summer":"Always available"}</div>`;
     ongoing.forEach(o=>{
-      html+=`<div class="event-item">
+      html+=`<div class="event-item" data-ev="${o.name.replace(/"/g,"&quot;")}" onclick="openEventDetail(this.dataset.ev)">
         <div class="event-item-icon" style="background:${o.bg}">${o.icon}</div>
         <div class="event-item-info"><div class="event-item-name">${o.name}</div></div>
         <div class="event-item-price${o.price==="Free"?" free":""}">${o.price}</div>
+        <div class="event-item-arrow">›</div>
       </div>`;
     });
   }
@@ -1173,11 +1152,13 @@ function closeSheet(){
 }
 function navSheet(dir){openSheet(activeSheetIdx+dir);}
 function goToExplore(){
-  switchTab(document.querySelector('[data-tab="explore"]'));
-  toast("🔍 찾고 있어요…");
+  const item=mapItems[activeSheetIdx];
+  closeSheet();
+  if(item) openEventDetail(item.name);
+  else switchTab(document.querySelector('[data-tab="explore"]'));
 }
 function locateMe(){
-  if(!navigator.geolocation){toast("위치를 지원하지 않는 브라우저예요");return;}
+  if(!navigator.geolocation){toast("Your browser doesn't support location");return;}
   navigator.geolocation.getCurrentPosition(pos=>{
     userLatLng=[pos.coords.latitude,pos.coords.longitude];
     if(userMarker) leafletMap.removeLayer(userMarker);
@@ -1185,7 +1166,7 @@ function locateMe(){
       .addTo(leafletMap).bindPopup("📍 My location").openPopup();
     leafletMap.setView(userLatLng,14);
     renderMap();
-  },()=>toast("위치 권한을 확인해주세요"));
+  },()=>toast("Please check your location permissions"));
 }
 /* ── ACTIONS ── */
 function switchMode(mode){
@@ -1195,11 +1176,23 @@ function switchMode(mode){
   document.getElementById("searchInput").placeholder=mode==="dayout"?"What's on in Exeter?":"Find a club or camp…";
   document.getElementById("listTitle").textContent=mode==="dayout"?"📅 What's on":"🏫 Holiday & after-school clubs";
   document.getElementById("areaSubBar").style.display=mode==="dayout"?"flex":"none";
+  // "Coming up" cards only show in What's on mode
+  const uh=document.getElementById("upcomingHead"),uc=document.getElementById("upcomingCards");
+  if(uh){uh.style.display=mode==="dayout"?"":"none";uc.style.display=mode==="dayout"?"":"none";}
+  // Kids eat free section also only in What's on mode
+  const eh=document.getElementById("eatDealsHead"),ed=document.getElementById("eatDeals");
+  if(eh){eh.style.display=mode==="dayout"?"":"none";ed.style.display=mode==="dayout"?"":"none";}
   renderChips();
   renderQA();
   if(mode==="holiday"&&!holidayData) loadHolidayClubs();
   else renderPlaces();
   if(currentTab==="map") renderMap();
+  // Sync with bottom nav: holiday ↔ Clubs, dayout ↔ Explore
+  const wantTab=mode==="holiday"?"clubs":"explore";
+  if((currentTab==="explore"||currentTab==="clubs")&&currentTab!==wantTab){
+    const btn=document.querySelector(`.nav-item[data-tab="${wantTab}"]`);
+    if(btn) switchTab(btn);
+  }
 }
 function filterChip(el){
   activeChip=el.dataset.v;
@@ -1214,16 +1207,85 @@ function toggleCard(cardEl){
   document.querySelectorAll(".card-wrapper").forEach(w=>w.classList.remove("open"));
   if(!wasOpen){wrapper.classList.add("open");setTimeout(()=>wrapper.scrollIntoView({behavior:"smooth",block:"nearest"}),60);}
 }
+/* ── CALENDAR ITEM → CARD DETAIL ── */
+function normName(s){
+  return (s||"").toLowerCase()
+    .replace(/\(.*?\)/g," ")          // drop parentheticals e.g. "(free + Time Odyssey)"
+    .replace(/[–—-]/g," ")
+    .replace(/[^a-z0-9\s]/g," ")
+    .replace(/\s+/g," ").trim();
+}
+function findCardMatch(evName){
+  const target=normName(evName);
+  if(!target) return null;
+  const tWords=target.split(" ").filter(w=>w.length>2);
+  const pools=[
+    {mode:"dayout", list:[...DAYOUT_PLACES,...((holidayData||[]).filter(p=>p.tab==="dayout"))]},
+    {mode:"holiday",list:(holidayData||HOLIDAY_FALLBACK).filter(p=>!p.tab||p.tab==="club")}
+  ];
+  let best=null,bestScore=0;
+  pools.forEach(pool=>pool.list.forEach(p=>{
+    const cand=normName(p.name);
+    if(!cand) return;
+    let score=0;
+    if(cand===target) score=100;
+    else if(cand.includes(target)||target.includes(cand)) score=80;
+    else{
+      const cWords=cand.split(" ");
+      const hits=tWords.filter(w=>cWords.includes(w)).length;
+      score=hits>=2?hits*20:0;
+    }
+    if(score>bestScore){bestScore=score;best={p,mode:pool.mode};}
+  }));
+  return bestScore>=40?best:null;
+}
+function openMatchedCard(name,tries){
+  const el=[...document.querySelectorAll("#places .card-name")]
+    .find(n=>n.textContent.trim()===name);
+  if(el){
+    const card=el.closest(".card");
+    toggleCard(card);
+    card.scrollIntoView({behavior:"smooth",block:"center"});
+  }else if(tries>0){
+    setTimeout(()=>openMatchedCard(name,tries-1),300); // wait for sheet data to load
+  }
+}
+function openEventDetail(evName){
+  const m=findCardMatch(evName);
+  if(!m){toast("ℹ️ No detail card for this event yet");return;}
+  const wantTab=m.mode==="holiday"?"clubs":"explore";
+  const btn=document.querySelector(`.nav-item[data-tab="${wantTab}"]`);
+  if(btn) switchTab(btn);
+  activeChip="All";renderChips();
+  if(m.mode==="dayout"){
+    const allSub=document.querySelector('.explore-sub[data-sub="all"]');
+    if(allSub) switchExploreSub(allSub);
+  }
+  const input=document.getElementById("searchInput");
+  input.value=m.p.name;searchTerm=m.p.name.toLowerCase();
+  renderPlaces();
+  setTimeout(()=>openMatchedCard(m.p.name,8),80);
+}
 function switchTab(el){
   const tab=el.dataset.tab;currentTab=tab;
   document.querySelectorAll(".nav-item").forEach(n=>n.classList.remove("active"));
   el.classList.add("active");
   document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
-  document.getElementById(`view-${tab}`).classList.add("active");
+  // The Clubs tab shows the data-driven explore view in holiday mode (synced with the top toggle)
+  const viewId=tab==="clubs"?"view-explore":`view-${tab}`;
+  document.getElementById(viewId).classList.add("active");
+  // Search / filter chips / mode toggle only apply to the list views — hide elsewhere
+  const listTabs=tab==="explore"||tab==="clubs";
+  const mt=document.querySelector(".mode-toggle"),se=document.querySelector(".search"),ch=document.getElementById("chips");
+  if(mt) mt.style.display=listTabs?"":"none";
+  if(se) se.style.display=listTabs?"":"none";
+  if(ch) ch.style.display=listTabs?"":"none";
   if(tab==="calendar") renderCalendar();
   if(tab==="map") renderMap();
+  if(tab==="clubs"&&currentMode!=="holiday") switchMode("holiday");
+  if(tab==="explore"&&currentMode!=="dayout") switchMode("dayout");
 }
-// 탐험 서브카테고리 (시내/외곽/1박+)
+// Explore sub-categories (In town / Day trip / Overnight)
 let activeExploreSub = "all";
 function switchExploreSub(el){
   activeExploreSub = el.dataset.sub;
@@ -1237,10 +1299,6 @@ function switchExploreSub(el){
   el.style.borderColor = "var(--gold)";
   renderPlaces();
 }
-function like(btn){
-  const span=btn.querySelector("span");let n=parseInt(span.textContent,10);
-  btn.classList.contains("liked")?(btn.classList.remove("liked"),span.textContent=n-1):(btn.classList.add("liked"),span.textContent=n+1);
-}
 let toastTimer;
 function toast(msg){
   const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");
@@ -1250,8 +1308,11 @@ function toast(msg){
 renderChips();
 renderQA();
 renderPlaces();
+renderUpcoming();
+renderEatDeals();
 loadQA();
 loadHolidayClubs();
+loadSheetEvents();
 </script>
 </body>
 </html>
