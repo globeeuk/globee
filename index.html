@@ -608,11 +608,11 @@ const QUESTIONS_FALLBACK = {
 let qaData = null;
 /* ── KIDS EAT FREE (Exeter-verified, summer 2026) ── */
 const EAT_DEALS = [
-  {name:"Morrisons Café",where:"Prince Charles Rd, EX4 7BY",deal:"1 kid eats free with adult main £5+",price:"Free",icon:"🛒",bg:"#f0ffe8",url:"https://www.morrisons.com/inspiration/shopping-at-morrisons/cafe"},
-  {name:"Bella Italia",where:"Queen St, city centre",deal:"Kids eat free Sun–Thu with adult main",price:"Free",icon:"🍝",bg:"#fce8f7",url:"https://www.bellaitalia.co.uk/"},
-  {name:"Hub Box",where:"Exeter city centre",deal:"Kids-eat-free promos in school holidays — check terms",price:"Free*",icon:"🍔",bg:"#fff0e8",url:"https://hubbox.co.uk/"},
-  {name:"Pizza Express",where:"Exeter",deal:"£1 kids' Piccolo meal via their app (participating branches)",price:"£1",icon:"🍕",bg:"#e8f0ff",url:"https://www.pizzaexpress.com/"},
-  {name:"Zizzi",where:"Gandy St",deal:"Kids' menu deals — check current offer",price:"Deal",icon:"🍴",bg:"#fef3d7",url:"https://www.zizzi.co.uk/"},
+  // Verified 2026-07-07 on official sites
+  {name:"Morrisons Café",where:"Prince Charles Rd, EX4 7BY",deal:"1 kid eats free with any adult meal £5+ · every day (café: Mon–Sat 8–5, Sun 9:30–4)",price:"Free",icon:"🛒",bg:"#f0ffe8",url:"https://www.morrisons.com/inspiration/shopping-at-morrisons/cafe"},
+  {name:"Bella Italia",where:"Queen St, city centre",deal:"Kids: 3 courses + drink free with adult main · Sun–Thu, all year",price:"Free",icon:"🍝",bg:"#fce8f7",url:"https://www.bellaitalia.co.uk/kids"},
+  {name:"Hub Box",where:"Exeter city centre",deal:"Has run kids-eat-free in past half terms — summer 2026 not announced yet",price:"Watch",icon:"🍔",bg:"#fff0e8",url:"https://hubbox.co.uk/news/"},
+  {name:"Pizza Express",where:"Exeter",deal:"Kids Eat Free ran May half-term (via app) — watch for a summer return",price:"Watch",icon:"🍕",bg:"#e8f0ff",url:"https://www.pizzaexpress.com/offers"},
 ];
 function dealHTML(d){
   return `
