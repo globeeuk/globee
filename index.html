@@ -874,14 +874,15 @@ function cardHTML(p){
     </div>`;
 }
 function toggleExploreSections(show){
-  // Coming up + standalone Kids eat free + area sub-bar (only meaningful in dayout mode)
+  // Coming up + standalone Kids eat free (only meaningful in dayout mode)
   if(currentMode!=="dayout") return;
   ["upcomingHead","upcomingCards","eatDealsHead","eatDeals"].forEach(id=>{
     const el=document.getElementById(id);
     if(el) el.style.display=show?"":"none";
   });
+  // area sub-bar is itself a filter control — keep it visible while filtering
   const sub=document.getElementById("areaSubBar");
-  if(sub) sub.style.display=show?"flex":"none"; // inline flex style
+  if(sub) sub.style.display="flex";
 }
 function renderPlaces(){
   const wrap=document.getElementById("places");
@@ -898,7 +899,10 @@ function renderPlaces(){
   }
   // "Kids eat free" chip shows ONLY the eat deals (hide other explore sections)
   const eatChipActive=currentMode==="dayout"&&activeChip==="🍽 Kids eat free";
-  toggleExploreSections(!eatChipActive);
+  // When any filter is active, collapse the "Coming up" / "Kids eat free" blocks
+  // so the matching places surface at the top instead of being pushed below the fold.
+  const isFiltering=currentMode==="dayout"&&(activeChip!=="All"||!!searchTerm||activeExploreSub!=="all");
+  toggleExploreSections(!eatChipActive&&!isFiltering);
   if(eatChipActive){
     document.getElementById("listTitle").textContent="🍽 Kids eat free";
     const deals=searchTerm?EAT_DEALS.filter(d=>`${d.name} ${d.where} ${d.deal}`.toLowerCase().includes(searchTerm)):EAT_DEALS;
@@ -911,7 +915,7 @@ function renderPlaces(){
   const data=getDataset();
   const filtered=data.filter(p=>{
     const c=matchesChip(p,activeChip);
-    const sub=activeExploreSub==="all"||currentMode!=="dayout"?true:(p.area===activeExploreSub);
+    const sub=activeExploreSub==="all"||currentMode!=="dayout"?true:(!p.area||p.area===activeExploreSub);
     if(!searchTerm) return c&&sub;
     const hay=`${p.name||""} ${p.region||""} ${p.description||""} ${(p.tags||[]).join(" ")}`.toLowerCase();
     return c&&sub&&hay.includes(searchTerm);
@@ -951,7 +955,7 @@ function mapRow(r){
     description:r.description||"",season:r.season||"",
     age_min:r.age_min!==""&&r.age_min!=null?r.age_min:null,
     age_max:r.age_max!==""&&r.age_max!=null?r.age_max:null,
-    dates:r.dates||"",location:r.location||"",url:r.url||"",
+    dates:r.dates||"",location:r.location||"",url:r.url||"",area:(r.area||"").toLowerCase()||null,
     featured:(r.featured||"").toLowerCase()==="true"||(r.name||"").toLowerCase().includes("rising stars"),
     regionKey:(r.location||"").toLowerCase().includes("dartmoor")?"Dartmoor"
              :(r.location||"").toLowerCase().includes("exeter")?"Exeter":(r.region||""),
