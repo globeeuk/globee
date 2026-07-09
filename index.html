@@ -393,22 +393,23 @@
       <span class="more" style="color:var(--ink-mute);font-size:11px;">Summer 2026</span>
     </div>
     <div id="eatDeals"></div>
-    <div class="section-head" style="margin-top:12px;">
+    <div class="section-head" style="margin-top:24px;" id="qHead">
+      <h2 id="qTitle">💬 What are mums asking?</h2>
+      <a class="ask-btn" id="askBtn" href="https://forms.gle/tVQQETV24frZhhpa6" target="_blank" rel="noopener">✏️ Ask</a>
+    </div>
+    <div class="q-scroll" id="qScroll"></div>
+    <div style="margin:16px 0 18px;" id="tipsBlock">
+      <div class="tips-label">✏️ TIPS</div>
+      <a class="tip-cta" href="https://forms.gle/tVQQETV24frZhhpa6" target="_blank" rel="noopener">✏️ Leave a Tip 🐝</a>
+      <div class="tip-cta-sub">Tips are reviewed and added to activity cards!</div>
+    </div>
+    <!-- Always-available places: kept at the bottom so the top of the screen stays fresh -->
+    <div class="section-head" style="margin-top:12px;" id="placesHead">
       <h2 id="listTitle">📍 Places to visit</h2>
       <span class="more"><strong id="placeCount">0</strong> listed</span>
     </div>
     <div class="cards" id="places"></div>
     <div class="empty-hint" id="emptyHint">😢 No matches — try a different filter</div>
-    <div class="section-head" style="margin-top:24px;">
-      <h2 id="qTitle">💬 What are mums asking?</h2>
-      <a class="ask-btn" id="askBtn" href="https://forms.gle/tVQQETV24frZhhpa6" target="_blank" rel="noopener">✏️ Ask</a>
-    </div>
-    <div class="q-scroll" id="qScroll"></div>
-    <div style="margin:16px 0 18px;">
-      <div class="tips-label">✏️ TIPS</div>
-      <a class="tip-cta" href="https://forms.gle/tVQQETV24frZhhpa6" target="_blank" rel="noopener">✏️ Leave a Tip 🐝</a>
-      <div class="tip-cta-sub">Tips are reviewed and added to activity cards!</div>
-    </div>
   </div>
   <!-- CALENDAR VIEW -->
   <div class="view" id="view-calendar">
@@ -876,7 +877,7 @@ function cardHTML(p){
 function toggleExploreSections(show){
   // Coming up + standalone Kids eat free (only meaningful in dayout mode)
   if(currentMode!=="dayout") return;
-  ["upcomingHead","upcomingCards","eatDealsHead","eatDeals"].forEach(id=>{
+  ["upcomingHead","upcomingCards","eatDealsHead","eatDeals","qHead","qScroll","tipsBlock"].forEach(id=>{
     const el=document.getElementById(id);
     if(el) el.style.display=show?"":"none";
   });
@@ -1209,6 +1210,8 @@ function switchMode(mode){
   // Kids eat free section also only in What's on mode
   const eh=document.getElementById("eatDealsHead"),ed=document.getElementById("eatDeals");
   if(eh){eh.style.display=mode==="dayout"?"":"none";ed.style.display=mode==="dayout"?"":"none";}
+  // Q & Tips blocks show in both modes — restore them (filters were just cleared)
+  ["qHead","qScroll","tipsBlock"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="";});
   renderChips();
   renderQA();
   if(mode==="holiday"&&!holidayData) loadHolidayClubs();
