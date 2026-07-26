@@ -1002,7 +1002,7 @@ async function loadSheetEvents(){
   }catch(e){console.error("[Globee] Events sheet error:",e);}
 }
 /* ── COMING UP CARDS ── */
-function isNew(g){if(!g.added)return false;var a=new Date(g.added);if(isNaN(a))return false;var d=(Date.now()-a.getTime())/86400000;return d>=0&&d<7;}function gotoCalendar(){
+function isNew(g){if(!g.added)return false;var a=new Date(g.added);if(isNaN(a))return false;var d=(Date.now()-a.getTime())/86400000;return d>=0&&d<21;}function gotoCalendar(){
   const btn=document.querySelector('.nav-item[data-tab="calendar"]');
   if(btn) switchTab(btn);
 }
@@ -1017,7 +1017,7 @@ function renderUpcoming(){
     if(e.date<g.first) g.first=e.date;
     if(e.date>g.last) g.last=e.date;
   });
-  const list=Object.values(groups).sort((a,b)=>a.first.localeCompare(b.first)).slice(0,8);
+  const list=Object.values(groups).sort((a,b)=>a.first.localeCompare(b.first)).slice(0,20);
   if(!list.length){box.innerHTML="";return;}
   const fmt=ds=>{const d=new Date(ds);return d.toLocaleDateString("en-GB",{day:"numeric",month:"short"});};
   const wk=ds=>new Date(ds).toLocaleDateString("en-GB",{weekday:"short"});
