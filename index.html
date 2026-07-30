@@ -612,11 +612,13 @@ const QUESTIONS_FALLBACK = {
 let qaData = null;
 /* ── KIDS EAT FREE (Exeter-verified, summer 2026) ── */
 const EAT_DEALS = [
-  // Verified 2026-07-07 on official sites
-  {name:"Morrisons Café",where:"Prince Charles Rd, EX4 7BY",deal:"1 kid eats free with any adult meal £5+ · every day (café: Mon–Sat 8–5, Sun 9:30–4)",price:"Free",icon:"🛒",bg:"#f0ffe8",url:"https://www.morrisons.com/inspiration/shopping-at-morrisons/cafe"},
-  {name:"Bella Italia",where:"Queen St, city centre",deal:"Kids: 3 courses + drink free with adult main · Sun–Thu, all year",price:"Free",icon:"🍝",bg:"#fce8f7",url:"https://www.bellaitalia.co.uk/kids"},
-  {name:"Hub Box",where:"Exeter city centre",deal:"Has run kids-eat-free in past half terms — summer 2026 not announced yet",price:"Watch",icon:"🍔",bg:"#fff0e8",url:"https://hubbox.co.uk/news/"},
-  {name:"Pizza Express",where:"Exeter",deal:"Kids Eat Free ran May half-term (via app) — watch for a summer return",price:"Watch",icon:"🍕",bg:"#e8f0ff",url:"https://www.pizzaexpress.com/offers"},
+  {region:"Devon",name:"Morrisons Café",where:"Prince Charles Rd, EX4 7BY",deal:"1 kid eats free with any adult meal £5+ · every day (café: Mon–Sat 8–5, Sun 9:30–4)",price:"Free",icon:"🛒",bg:"#f0ffe8",url:"https://www.morrisons.com/inspiration/shopping-at-morrisons/cafe"},
+  {region:"Devon",name:"Bella Italia",where:"Queen St, city centre",deal:"Kids: 3 courses + drink free with adult main · Sun–Thu, all year",price:"Free",icon:"🍝",bg:"#fce8f7",url:"https://www.bellaitalia.co.uk/kids"},
+  {region:"Devon",name:"Hub Box",where:"Exeter city centre",deal:"Has run kids-eat-free in past half terms — summer 2026 not announced yet",price:"Watch",icon:"🍔",bg:"#fff0e8",url:"https://hubbox.co.uk/news/"},
+  {region:"Devon",name:"Pizza Express",where:"Exeter",deal:"Kids Eat Free ran May half-term (via app) — watch for a summer return",price:"Watch",icon:"🍕",bg:"#e8f0ff",url:"https://www.pizzaexpress.com/offers"},
+  {region:"Nottingham",name:"The Starting Gate",where:"Colwick, Nottingham NG2 4DX",deal:"Kids meal (main, dessert & drink) 88p with an adult main · Mon–Fri all day · to 28 Aug",price:"88p",end:"2026-08-28",icon:"🍗",bg:"#f0ffe8",url:"https://www.greeneking.co.uk/pubs/nottinghamshire/starting-gate/kids-eat-free"},
+  {region:"Nottingham",name:"The Ram Inn",where:"Nottingham (Sizzling Pubs)",deal:"Kids main £1 with an adult main · every Monday from 12pm (daily in school holidays)",price:"£1",icon:"🍽",bg:"#fff0e8",url:"https://www.sizzlingpubs.co.uk/findapub/eastandwestmidlands/theraminnnottingham/offers"},
+  {region:"Nottingham",name:"Morrisons Café",where:"Nottingham stores",deal:"1 kid eats free with any adult meal £5+ · every day · under 16",price:"Free",icon:"🛒",bg:"#f0ffe8",url:"https://www.morrisons.com/inspiration/shopping-at-morrisons/cafe"},
 ];
 function dealHTML(d){
   return `
@@ -630,10 +632,14 @@ function dealHTML(d){
     </a>`;
 }
 const EAT_DEALS_NOTE=`<div style="font-size:11px;color:var(--ink-mute);padding:2px 4px 6px;">ℹ️ Asda's £1 kids' meal: no Exeter store (nearest ~20km). Offers change — check each provider before you go.</div>`;
+function dealsForRegion(){const t=new Date().toISOString().slice(0,10);return EAT_DEALS.filter(d=>(d.region||"Devon")===currentRegion&&(!d.end||d.end>=t));}
 function renderEatDeals(){
-  const box=document.getElementById("eatDeals");
-  if(!box) return;
-  box.innerHTML=currentRegion==="Devon"?(EAT_DEALS.map(dealHTML).join("")+EAT_DEALS_NOTE):"";
+  const box=document.getElementById("eatDeals");if(!box)return;
+  const head=document.getElementById("eatDealsHead");
+  const deals=dealsForRegion();
+  if(!deals.length){box.innerHTML="";box.style.display="none";if(head)head.style.display="none";return;}
+  box.style.display="";if(head)head.style.display="";
+  box.innerHTML=deals.map(dealHTML).join("")+(currentRegion==="Devon"?EAT_DEALS_NOTE:"");
 }
 /* ── CHIPS ── */
 const CHIPS = {
@@ -756,7 +762,7 @@ function matchesChip(p,chip){
 /* ── CHIPS ── */
 function renderChips(){
   document.getElementById("chips").innerHTML=
-    CHIPS[currentMode].filter(c=>!(c==="🍽 Kids eat free"&&currentRegion!=="Devon")).map(c=>
+    CHIPS[currentMode].filter(c=>!(c==="🍽 Kids eat free"&&!dealsForRegion().length)).map(c=>
       `<div class="chip ${c===activeChip?"active":""}" data-v="${c}" onclick="filterChip(this)">${c}</div>`
     ).join("");
 }
@@ -887,7 +893,7 @@ function toggleExploreSections(show){
   if(currentMode!=="dayout") return;
   ["upcomingHead","upcomingCards","eatDealsHead","eatDeals","qHead","qScroll","tipsBlock"].forEach(id=>{
     const el=document.getElementById(id);
-    if(el) el.style.display=(show&&!(currentRegion!=="Devon"&&(id==="eatDealsHead"||id==="eatDeals")))?"":"none";
+    if(el) el.style.display=(show&&!((id==="eatDealsHead"||id==="eatDeals")&&!dealsForRegion().length))?"":"none";
   });
   // area sub-bar is itself a filter control — keep it visible while filtering
   const sub=document.getElementById("areaSubBar");
@@ -914,8 +920,8 @@ function renderPlaces(){
   toggleExploreSections(!eatChipActive&&!isFiltering);
   if(eatChipActive){
     document.getElementById("listTitle").textContent="🍽 Kids eat free";
-    const deals=searchTerm?EAT_DEALS.filter(d=>`${d.name} ${d.where} ${d.deal}`.toLowerCase().includes(searchTerm)):EAT_DEALS;
-    wrap.innerHTML=deals.map(dealHTML).join("")+(deals.length?EAT_DEALS_NOTE:"");
+    const deals=searchTerm?dealsForRegion().filter(d=>`${d.name} ${d.where} ${d.deal}`.toLowerCase().includes(searchTerm)):dealsForRegion();
+    wrap.innerHTML=deals.map(dealHTML).join("")+(deals.length&&currentRegion==="Devon"?EAT_DEALS_NOTE:"");
     document.getElementById("placeCount").textContent=deals.length;
     empty.style.display=deals.length?"none":"block";
     return;
