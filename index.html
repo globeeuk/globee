@@ -633,7 +633,7 @@ const EAT_DEALS_NOTE=`<div style="font-size:11px;color:var(--ink-mute);padding:2
 function renderEatDeals(){
   const box=document.getElementById("eatDeals");
   if(!box) return;
-  box.innerHTML=EAT_DEALS.map(dealHTML).join("")+EAT_DEALS_NOTE;
+  box.innerHTML=currentRegion==="Devon"?(EAT_DEALS.map(dealHTML).join("")+EAT_DEALS_NOTE):"";
 }
 /* ── CHIPS ── */
 const CHIPS = {
@@ -729,7 +729,7 @@ let mapItems=[], activeSheetIdx=-1, activePill=null;
 function isSummer(d){return d>="2026-07-25"&&d<="2026-09-04";}
 function itemRegion(p){return ((p.regionKey||p.region||"")==="Nottingham")?"Nottingham":"Devon";}
 function evRegion(e){return (e.region==="Nottingham")?"Nottingham":"Devon";}
-function setRegion(r){currentRegion=r;document.querySelectorAll(".region-btn").forEach(b=>{const on=b.dataset.region===r;b.classList.toggle("active",on);b.style.background=on?REGION_META[r].colour:"var(--gold-soft)";b.style.color=on?"#fff":"var(--ink-soft)";b.style.borderColor=on?"transparent":"var(--line)";});renderPlaces();renderUpcoming();if(currentTab==="calendar"){renderCalendar();if(selectedDate)selectDate(selectedDate);}if(currentTab==="map"&&leafletMap)renderMap();}
+function setRegion(r){currentRegion=r;if(r!=="Devon"&&activeChip==="🍽 Kids eat free")activeChip="All";renderChips();renderEatDeals();document.querySelectorAll(".region-btn").forEach(b=>{const on=b.dataset.region===r;b.classList.toggle("active",on);b.style.background=on?REGION_META[r].colour:"var(--gold-soft)";b.style.color=on?"#fff":"var(--ink-soft)";b.style.borderColor=on?"transparent":"var(--line)";});renderPlaces();renderUpcoming();if(currentTab==="calendar"){renderCalendar();if(selectedDate)selectDate(selectedDate);}if(currentTab==="map"&&leafletMap)renderMap();}
 function ageLabel(min,max){
   min=parseInt(min);max=parseInt(max);
   if(isNaN(min)||isNaN(max)) return "";
@@ -756,7 +756,7 @@ function matchesChip(p,chip){
 /* ── CHIPS ── */
 function renderChips(){
   document.getElementById("chips").innerHTML=
-    CHIPS[currentMode].map(c=>
+    CHIPS[currentMode].filter(c=>!(c==="🍽 Kids eat free"&&currentRegion!=="Devon")).map(c=>
       `<div class="chip ${c===activeChip?"active":""}" data-v="${c}" onclick="filterChip(this)">${c}</div>`
     ).join("");
 }
@@ -887,7 +887,7 @@ function toggleExploreSections(show){
   if(currentMode!=="dayout") return;
   ["upcomingHead","upcomingCards","eatDealsHead","eatDeals","qHead","qScroll","tipsBlock"].forEach(id=>{
     const el=document.getElementById(id);
-    if(el) el.style.display=show?"":"none";
+    if(el) el.style.display=(show&&!(currentRegion!=="Devon"&&(id==="eatDealsHead"||id==="eatDeals")))?"":"none";
   });
   // area sub-bar is itself a filter control — keep it visible while filtering
   const sub=document.getElementById("areaSubBar");
