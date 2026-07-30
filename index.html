@@ -57,6 +57,9 @@
     background:var(--gold-soft);color:var(--gold-dark);
     padding:4px 10px;border-radius:20px;font-size:11.5px;font-weight:600;
   }
+  .region-toggle{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;}
+  .region-btn{background:var(--gold-soft);color:var(--ink-soft);border:1.5px solid var(--line);padding:4px 10px;border-radius:20px;font-size:11.5px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;white-space:nowrap;}
+  .region-btn:active{transform:scale(.97);}
   /* MODE TOGGLE */
   .mode-toggle{
     display:flex;gap:5px;background:var(--cream);
@@ -353,7 +356,7 @@
         <div class="logo-icon">🐝</div>
         <div class="logo-text">Glo<span>bee</span></div>
       </div>
-      <div class="region-badge">📍 Exeter &amp; Devon</div>
+      <div class="region-toggle" id="regionToggle"><button class="region-btn" data-region="Devon" onclick="setRegion('Devon')">📍 Exeter · Devon</button><button class="region-btn" data-region="Nottingham" onclick="setRegion('Nottingham')">📍 Nottingham</button></div>
     </div>
     <div class="mode-toggle">
       <button class="mode-btn active" data-mode="dayout" onclick="switchMode('dayout')">
@@ -715,6 +718,8 @@ const COORDS = {
 };
 /* ── STATE ── */
 let currentMode="dayout", currentTab="explore";
+let currentRegion="Devon";
+const REGION_META={Devon:{colour:"#378ADD"},Nottingham:{colour:"#A32D2D"}};
 let activeChip="All", searchTerm="";
 let holidayData=null, holidayStatus="idle";
 let calYear=2026, calMonth=5, selectedDate=null;
@@ -722,6 +727,9 @@ let leafletMap=null, mapMarkers=[], userMarker=null, userLatLng=null;
 let mapItems=[], activeSheetIdx=-1, activePill=null;
 /* ── HELPERS ── */
 function isSummer(d){return d>="2026-07-25"&&d<="2026-09-04";}
+function itemRegion(p){return ((p.regionKey||p.region||"")==="Nottingham")?"Nottingham":"Devon";}
+function evRegion(e){return (e.region==="Nottingham")?"Nottingham":"Devon";}
+function setRegion(r){currentRegion=r;document.querySelectorAll(".region-btn").forEach(b=>{const on=b.dataset.region===r;b.classList.toggle("active",on);b.style.background=on?REGION_META[r].colour:"var(--gold-soft)";b.style.color=on?"#fff":"var(--ink-soft)";b.style.borderColor=on?"transparent":"var(--line)";});renderPlaces();renderUpcoming();if(currentTab==="calendar"){renderCalendar();if(selectedDate)selectDate(selectedDate);}if(currentTab==="map"&&leafletMap)renderMap();}
 function ageLabel(min,max){
   min=parseInt(min);max=parseInt(max);
   if(isNaN(min)||isNaN(max)) return "";
@@ -917,9 +925,10 @@ function renderPlaces(){
   const filtered=data.filter(p=>{
     const c=matchesChip(p,activeChip);
     const sub=activeExploreSub==="all"||currentMode!=="dayout"?true:(!p.area||p.area===activeExploreSub);
-    if(!searchTerm) return c&&sub;
+    const reg=itemRegion(p)===currentRegion;
+    if(!searchTerm) return c&&sub&&reg;
     const hay=`${p.name||""} ${p.region||""} ${p.description||""} ${(p.tags||[]).join(" ")}`.toLowerCase();
-    return c&&sub&&hay.includes(searchTerm);
+    return c&&sub&&reg&&hay.includes(searchTerm);
   });
   wrap.innerHTML=banner+filtered.map(p=>cardHTML(p)).join("");
   document.getElementById("placeCount").textContent=filtered.length;
@@ -958,8 +967,9 @@ function mapRow(r){
     age_max:r.age_max!==""&&r.age_max!=null?r.age_max:null,
     dates:r.dates||"",location:r.location||"",url:r.url||"",area:(r.area||"").toLowerCase()||null,
     featured:(r.featured||"").toLowerCase()==="true"||(r.name||"").toLowerCase().includes("rising stars"),
-    regionKey:(r.location||"").toLowerCase().includes("dartmoor")?"Dartmoor"
-             :(r.location||"").toLowerCase().includes("exeter")?"Exeter":(r.region||""),
+    regionKey:(r.region||"").trim()
+             ||((r.location||"").toLowerCase().includes("dartmoor")?"Dartmoor"
+             :(r.location||"").toLowerCase().includes("exeter")?"Exeter":""),
     flags:[((r.price_type||"").toLowerCase()==="free"||/free/i.test(r.price||""))?"free":null].filter(Boolean),
   };
 }
@@ -994,7 +1004,7 @@ async function loadSheetEvents(){
         const ds=d.toISOString().slice(0,10);
         if(seen.has(ds+"|"+r.name)) continue;
         seen.add(ds+"|"+r.name);
-        SPECIFIC_EVENTS.push({date:ds,added:r.added||"",name:r.name,icon:r.icon||"🎪",bg:r.bg||"#fef3d7",price:r.price||"—"});
+        SPECIFIC_EVENTS.push({date:ds,added:r.added||"",region:r.region||"",name:r.name,icon:r.icon||"🎪",bg:r.bg||"#fef3d7",price:r.price||"—"});
       }
     });
     renderUpcoming();
@@ -1012,7 +1022,7 @@ function renderUpcoming(){
   const today=new Date().toISOString().slice(0,10);
   // group multi-day events: name -> first upcoming date + last date
   const groups={};
-  SPECIFIC_EVENTS.filter(e=>e.date>=today).forEach(e=>{
+  SPECIFIC_EVENTS.filter(e=>e.date>=today&&evRegion(e)===currentRegion).forEach(e=>{
     const g=groups[e.name]||(groups[e.name]={...e,first:e.date,last:e.date});
     if(e.date<g.first) g.first=e.date;
     if(e.date>g.last) g.last=e.date;
@@ -1048,7 +1058,7 @@ function renderCalendar(){
   for(let i=0;i<offset;i++) html+=`<div class="cal-day empty"></div>`;
   for(let d=1;d<=days;d++){
     const ds=`${calYear}-${String(calMonth+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
-    const evs=SPECIFIC_EVENTS.filter(e=>e.date===ds);
+    const evs=SPECIFIC_EVENTS.filter(e=>e.date===ds&&evRegion(e)===currentRegion);
     const hasFree=evs.some(e=>/free/i.test(e.price||""));
     const hasPaid=evs.some(e=>!/free/i.test(e.price||""));
     let cls="cal-day";
@@ -1068,7 +1078,7 @@ function changeMonth(dir){
 }
 function selectDate(ds){
   selectedDate=ds;renderCalendar();
-  const evs=SPECIFIC_EVENTS.filter(e=>e.date===ds);
+  const evs=SPECIFIC_EVENTS.filter(e=>e.date===ds&&evRegion(e)===currentRegion);
   const summer=isSummer(ds);
   const d=new Date(ds+"T00:00:00");
   const label=d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
@@ -1085,7 +1095,7 @@ function selectDate(ds){
       </div>`;
     });
   }
-  const ongoing=ONGOING.filter(o=>o.always||(o.summer&&summer));
+  const ongoing=currentRegion==="Devon"?ONGOING.filter(o=>o.always||(o.summer&&summer)):[];
   if(ongoing.length){
     html+=`<div class="event-section-label">${summer?"Also this summer":"Always available"}</div>`;
     ongoing.forEach(o=>{
@@ -1118,6 +1128,7 @@ function buildMapItems(){
   const data=currentMode==="dayout"?DAYOUT_PLACES:(holidayData||HOLIDAY_FALLBACK);
   const items=[];
   data.forEach(p=>{
+    if(itemRegion(p)!==currentRegion) return;
     const coords=COORDS[p.name];if(!coords) return;
     const type=(p.type||"multi").toLowerCase();
     const color=TYPE_COLORS[type]||"#a78bfa";
@@ -1340,6 +1351,7 @@ renderQA();
 renderPlaces();
 renderUpcoming();
 renderEatDeals();
+setRegion(currentRegion);
 loadQA();
 loadHolidayClubs();
 loadSheetEvents();
